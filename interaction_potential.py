@@ -5,8 +5,12 @@ import argparse
 import threading
 
 
-def filter_ligands():
-    return chain
+def filter_ligands(pdb_file):
+    pdb_parser = PDB.PDBParser(QUIET = True)
+    ref = pdb_parser.get_structure(pdb_file, pdb_file)
+    for i in ref.get_chains():
+        ch = i
+    return ch
 
 def is_connected():
     return false
@@ -24,7 +28,7 @@ def align_structs(ref, sample):
     super_imposer.set_atoms(ref_atoms, smpl_atoms)
     super_imposer.apply(sample.get_atoms())
     
-    return super_imposer.rms
+    return(super_imposer.rms)
 
 
 if __name__ == "__main__":
@@ -36,5 +40,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     # test
-    align_structures(args.ref, args.ref)
+    ref = filter_ligands(args.ref)
+    print(align_structs(ref, ref))
 
