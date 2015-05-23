@@ -38,7 +38,7 @@ specialcodes = {"GCA": [("GLY", "GA")],
                 "SOG": [("SER", "CB"), ("SER", "OG"), ("THR", "OG1"),
                         ("TYR", "OH")],
                 "HNE": [("HIS", "CG"), ("HIS", "ND1"), ("HIS", "CD2"),
-                        ("HIS", "CE1"), ("TRP", "NE2")],
+                        ("HIS", "CE1"), ("HIS", "NE2"), ("TRP", "NE1")],
                 "YCZ": [("TYR", "CE1"), ("TYR", "CE2"), ("TYR", "CZ")],
                 "FCZ": [("ARG", "CG"), ("GLN", "CG"), ("GLU", "CG"),
                         ("ILE", "CG1"), ("LEU", "CG"), ("LYS", "CG"),
@@ -50,6 +50,9 @@ specialcodes = {"GCA": [("GLY", "GA")],
                         ("TRP", "CZ3"), ("TRP", "CH2"), ("TYR", "CG"),
                         ("TYR", "CD1"), ("TYR", "CD2")],
                 "LCD": [("ILE", "CG2"),
+                        # The paper suggests the nomanclature CD for Isoleucin,
+                        # but it seems that CD1 is the standart.for
+                        # See: http://www.bmrb.wisc.edu/ref_info/atom_nom.tbl
                         #("ILE", "CD"),
                         ("ILE", "CD1"),
                         #
@@ -193,7 +196,8 @@ def computecontactenergy(pdbpath):
         try:
             sum += energylookup(*pair)
         except KeyError:
-            print("Couldn't lookup", pair)
+            # This should only happen for C-Terminal hydroxyl-groups.
+            assert pair[0] == "OXT" or pair[1] == "OXT"
     print("Energy is {} kcal/mol at T=298K".format(sum/21))
 
 
