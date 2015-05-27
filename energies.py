@@ -6,7 +6,9 @@ import pandas as pd
 
 import argparse
 import os
+import time
 import sys
+from math import floor
 from collections import defaultdict
 from itertools import combinations
 from multiprocessing import Pool
@@ -93,6 +95,13 @@ contactenergies = contactenergies.fillna(contactenergies.T)
 ################################################################################
 
 
+# VT100 controls
+CURSOR_UP_ONE = "\x1b[1A"
+CURSOR_DOWN_ONE = "\x1b[1B"
+ERASE_LINE = "\x1b[2K"
+DELETE_LINE = "\x1b[1M"
+
+
 """
 Pre-process special cases for performance boost.
 """
@@ -138,7 +147,7 @@ def ligandfilter(pdb):
     assert len(pdb.child_list[0]) == 1
 
 
-def ispossiblepair(atom1, atom2):
+def iscontactpair(atom1, atom2):
     """
     Determine whether two atoms are possible contact pairs based on their
     connection class. It is assumed that the atoms are on the same chain.
@@ -157,21 +166,20 @@ def ispossiblepair(atom1, atom2):
     return respos2 - respos1 > connectivitymatrix.loc[code1, code2]
 
 
-def energylookup(atoms):
+def energylookup(atom1, atom2):
     """
     Lookup energy codes for a pair of atoms.
-    :param atoms: tuple(PDBAtom, PDBAtom)
+    :param atom1: PDBAtom
+    :param atom12: PDBAtom
     :return:float
     """
-    # Unpack tuple (needed due to multiprocessing)
-    atom1, atom2 = atoms
     # Attribute atomtype set by itercontactpairs function
     return contactenergies.loc[atomtype(atom1), atomtype(atom2)]
 
 
-def itercontactpairs(pdb):
+def allpairs(pdb):
     """
-    Iterator over all possible contact pairs in a PDB structure.
+    Iterator over all heavy atom pairs in a PDB structure.
     PDB consists of only one model and only one chain.
     :param pdb: PDB.
     :return:iterator
@@ -183,36 +191,70 @@ def itercontactpairs(pdb):
             heavyatoms.append(atom)
     # Generator of pairs
     for atom1, atom2 in combinations(heavyatoms, 2):
-        if ispossiblepair(atom1, atom2):
-            yield (atom1, atom2)
-    """
-    for (index, atom1) in enumerate(heavyatoms):
-        # Second indices from iterator slice (islice)
-        for atom2 in islice(heavyatoms, index + 1, None):
-            if ispossiblepair(atom1, atom2):
-                yield (atom1, atom2)
-    """
+        yield (atom1, atom2)
 
 
-def computecontactenergy(pdbpath, cores=4):
+def worker(pair):
+    """
+    Check whether a pair is a valid contact pair, and compute energies.
+    :param pair: tuple(PDBAtom, PDBAtom)
+    :return: flaot
+    """
+    if iscontactpair(*pair):
+        return energylookup(*pair)
+    else:
+        return 0
+
+
+def computecontactenergy(pdbpath, pool):
     """
     Compute contact pairs energy for a PDB file.
     :param pdbpath: str
-    :param cores: int
+    :param pool: multiporecessing.Pool
     :return:float (energy in kcal/mol)
     """
     parser = PDB.PDBParser(QUIET=True)
     pdb = parser.get_structure("", pdbpath)
     ligandfilter(pdb)
     # Compute pairwise energy on multiple cores
-    pool = Pool(processes=cores)
-    energies = pool.map(energylookup, itercontactpairs(pdb))
-    """
-    energy = 0
-    for pair in itercontactpairs(pdb):
-        energy += energylookup(*pair)
-    """
+
+    async = pool.map_async(worker, allpairs(pdb))
+    # Wating wheel for user
+    waiting(async)
+    energies = async.get()
+    # Convert to kcal/mol
     return sum(energies) / 21
+
+
+def waiting(async):
+    """
+    Show waiting symbol as long as async is still running.
+    :param async: Async object
+    :return:
+    """
+    print()
+    state = 0
+    chars = r"|/-\|"
+    while not async.ready():
+        print(CURSOR_UP_ONE + DELETE_LINE + chars[state])
+        state = (state + 1) % 5
+        time.sleep(0.5)
+    print(DELETE_LINE)
+
+
+def updateprogress(current, ratio):
+    """
+    Let user know how much work has been completed so far, and what the current
+    file is.
+    :param current: str
+    :param ratio: flaot
+    :return:
+    """
+    # Delete last progressbar
+    print(CURSOR_UP_ONE * 2 + DELETE_LINE * 2, end="")
+    # Print new one
+    print("[{:3.2f}% {: <50}]".format(ratio * 100, "-" * floor(ratio * 50)))
+    print("Current PDB: {}".format(current))
 
 
 def main(path, out, cores):
@@ -226,17 +268,23 @@ def main(path, out, cores):
     # Find all pdbs in path
     workload = []
     for file in os.listdir(path):
-        if os.path.splitext(file)[1].lower() == "pdb":
+        if os.path.splitext(file)[1].lower() == ".pdb":
             workload.append(file)
+    # Print few newlines to prevent progressbar from messing up the shell
+    print("\n\n")
     # Compute energies
+    pool = Pool(processes=cores)
     results = []
     for (nr, pdb) in enumerate(workload):
-        e = computecontactenergy(os.path.join(path, pdb), cores)
+        updateprogress(pdb, nr / len(workload))
+        e = computecontactenergy(os.path.join(path, pdb), pool)
         results.append((pdb, e))
+    pool.close()
+    # Store output
     with open(out, "w") as handler:
-        handler.write("PDB,Energy in kcal/mol")
-        results = ["{},{}".format(*i) for i in results]
-        handler.writelines(results)
+        handler.write("PDB,Energy in kcal/mol\n")
+        for pair in results:
+            print("{},{}\n".format(*pair))
 
 
 if __name__ == "__main__":
@@ -244,7 +292,7 @@ if __name__ == "__main__":
     shell.add_argument("path",
                        help="Path to directory that contains the PDB files",
                        type=str)
-    shell.add_argument("cores", help="Nr. of cores", type=int, default=4)
     shell.add_argument("out", help="Output-file for the computed energies")
+    shell.add_argument("cores", help="Nr. of cores", type=int, default=4)
     args = shell.parse_args()
     main(args.path, args.out, args.cores)
