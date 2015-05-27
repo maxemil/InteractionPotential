@@ -286,6 +286,8 @@ def main(path, out, cores):
         e = computecontactenergy(os.path.join(path, pdb), pool)
         results.append((pdb, e))
     pool.close()
+    # Make 100% to appear
+    updateprogress("Finished", 1)
     # Store output
     with open(out, "w") as handler:
         handler.write("PDB,Energy in kcal/mol\n")
