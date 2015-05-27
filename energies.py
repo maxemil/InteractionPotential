@@ -155,8 +155,8 @@ def iscontactpair(atom1, atom2):
     :param atom2: PDB.Atom
     :return:bool
     """
-    if atom1 - atom2 < 6:
-        # Exclusion due to close proximity
+    if atom1 - atom2 > 6:
+        # Exclusion due to big distance
         return False
     # Keep if residue position is distant enough
     code1 = connectivityclass[atom1.name]
@@ -234,10 +234,10 @@ def waiting(async):
     """
     print()
     state = 0
-    chars = r"|/-\|"
+    chars = r"|/-\."
     while not async.ready():
         print(CURSOR_UP_ONE + DELETE_LINE + chars[state])
-        state = (state + 1) % 5
+        state = (state + 1) % len(chars)
         time.sleep(0.5)
     print(DELETE_LINE)
 
@@ -253,7 +253,7 @@ def updateprogress(current, ratio):
     # Delete last progressbar
     print(CURSOR_UP_ONE * 2 + DELETE_LINE * 2, end="")
     # Print new one
-    print("[{:3.2f}% {: <50}]".format(ratio * 100, "-" * floor(ratio * 50)))
+    print("[{: >#6.2f}% {: <50}]".format(ratio * 100, "-" * floor(ratio * 50)))
     print("Current PDB: {}".format(current))
 
 
@@ -284,7 +284,7 @@ def main(path, out, cores):
     with open(out, "w") as handler:
         handler.write("PDB,Energy in kcal/mol\n")
         for pair in results:
-            print("{},{}\n".format(*pair))
+            handler.write("{},{}\n".format(*pair))
 
 
 if __name__ == "__main__":
