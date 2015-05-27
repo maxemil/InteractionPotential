@@ -2,11 +2,14 @@
 
 
 from Bio import PDB
+import pandas as pd
+
 import argparse
 import os
-import pandas as pd
+import sys
 from collections import defaultdict
-from itertools import islice
+from itertools import combinations
+from multiprocessing import Pool
 
 
 ################################################################################
@@ -50,10 +53,10 @@ specialcodes = {"GCA": [("GLY", "GA")],
                         ("TRP", "CZ3"), ("TRP", "CH2"), ("TYR", "CG"),
                         ("TYR", "CD1"), ("TYR", "CD2")],
                 "LCD": [("ILE", "CG2"),
-                        # The paper suggests the nomanclature CD for Isoleucin,
-                        # but it seems that CD1 is the standart.for
+                        # The paper suggests the nomenclature CD for Isoleucin,
+                        # but it seems that CD1 is the standard.
                         # See: http://www.bmrb.wisc.edu/ref_info/atom_nom.tbl
-                        #("ILE", "CD"),
+                        # ("ILE", "CD"),
                         ("ILE", "CD1"),
                         #
                         ("LEU", "CD1"),
@@ -73,10 +76,10 @@ connectivitymatrix = pd.DataFrame([[3, 3, 2, 2],
 
 # Class of atoms for connectivity matrix, default is side-chain, class 4.
 connectivityclass = defaultdict(lambda: 4,
-                               {"N": 1,
-                                "CA": 2,
-                                "C": 3,
-                                "O": 3})
+                                {"N": 1,
+                                 "CA": 2,
+                                 "C": 3,
+                                 "O": 3})
 
 
 # Load contact energies
@@ -151,18 +154,18 @@ def ispossiblepair(atom1, atom2):
     code2 = connectivityclass[atom2.name]
     respos1 = atom1.parent.id[1]
     respos2 = atom2.parent.id[1]
-    if respos2 - respos1 <= connectivitymatrix.loc[code1, code2]:
-        return False
-    return True
+    return respos2 - respos1 > connectivitymatrix.loc[code1, code2]
 
 
-def energylookup(atom1, atom2):
+def energylookup(atoms):
     """
     Lookup energy codes for a pair of atoms.
-    :param atom1: PDBAtom
-    :param atom2: PDBAtom
+    :param atoms: tuple(PDBAtom, PDBAtom)
     :return:float
     """
+    # Unpack tuple (needed due to multiprocessing)
+    atom1, atom2 = atoms
+    # Attribute atomtype set by itercontactpairs function
     return contactenergies.loc[atomtype(atom1), atomtype(atom2)]
 
 
@@ -173,36 +176,67 @@ def itercontactpairs(pdb):
     :param pdb: PDB.
     :return:iterator
     """
-    heavyatoms = [i for i in pdb.get_atoms() if i.element != "H"]
+    # Filter out hydrogen and C-Terminal hydroxyl-group
+    heavyatoms = []
+    for atom in pdb.get_atoms():
+        if atom.element != "H" and atom.name != "OXT":
+            heavyatoms.append(atom)
+    # Generator of pairs
+    for atom1, atom2 in combinations(heavyatoms, 2):
+        if ispossiblepair(atom1, atom2):
+            yield (atom1, atom2)
+    """
     for (index, atom1) in enumerate(heavyatoms):
         # Second indices from iterator slice (islice)
         for atom2 in islice(heavyatoms, index + 1, None):
             if ispossiblepair(atom1, atom2):
                 yield (atom1, atom2)
+    """
 
 
-def computecontactenergy(pdbpath):
+def computecontactenergy(pdbpath, cores=4):
     """
     Compute contact pairs energy for a PDB file.
     :param pdbpath: str
-    :return:float
+    :param cores: int
+    :return:float (energy in kcal/mol)
     """
-    parser = PDB.PDBParser()
+    parser = PDB.PDBParser(QUIET=True)
     pdb = parser.get_structure("", pdbpath)
     ligandfilter(pdb)
-    # Sum up energies
-    sum = 0
+    # Compute pairwise energy on multiple cores
+    pool = Pool(processes=cores)
+    energies = pool.map(energylookup, itercontactpairs(pdb))
+    """
+    energy = 0
     for pair in itercontactpairs(pdb):
-        try:
-            sum += energylookup(*pair)
-        except KeyError:
-            # This should only happen for C-Terminal hydroxyl-groups.
-            assert pair[0] == "OXT" or pair[1] == "OXT"
-    print("Energy is {} kcal/mol at T=298K".format(sum/21))
+        energy += energylookup(*pair)
+    """
+    return sum(energies) / 21
 
 
-def main(dir, out):
-    pass
+def main(path, out, cores):
+    """
+    Compute contact energies for each pdb in path and write results to 'out'.
+    :param path: str
+    :param out: str
+    :param cores: int
+    :return:
+    """
+    # Find all pdbs in path
+    workload = []
+    for file in os.listdir(path):
+        if os.path.splitext(file)[1].lower() == "pdb":
+            workload.append(file)
+    # Compute energies
+    results = []
+    for (nr, pdb) in enumerate(workload):
+        e = computecontactenergy(os.path.join(path, pdb), cores)
+        results.append((pdb, e))
+    with open(out, "w") as handler:
+        handler.write("PDB,Energy in kcal/mol")
+        results = ["{},{}".format(*i) for i in results]
+        handler.writelines(results)
 
 
 if __name__ == "__main__":
@@ -210,7 +244,7 @@ if __name__ == "__main__":
     shell.add_argument("path",
                        help="Path to directory that contains the PDB files",
                        type=str)
+    shell.add_argument("cores", help="Nr. of cores", type=int, default=4)
     shell.add_argument("out", help="Output-file for the computed energies")
     args = shell.parse_args()
-
-    main(args.path, args.out)
+    main(args.path, args.out, args.cores)
