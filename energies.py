@@ -201,7 +201,12 @@ def worker(pair):
     :return: flaot
     """
     if iscontactpair(*pair):
-        return energylookup(*pair)
+        try:
+            return energylookup(*pair)
+        except KeyError:
+            # Some annoying pdb files use unconventional nomenclature for
+            # C-Terminal atoms
+            return 0
     else:
         return 0
 
