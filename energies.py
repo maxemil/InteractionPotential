@@ -239,7 +239,8 @@ def waiting(async):
         print(CURSOR_UP_ONE + DELETE_LINE + chars[state])
         state = (state + 1) % len(chars)
         time.sleep(0.5)
-    print(DELETE_LINE)
+    # Back to line or progressbar
+    print(DELETE_LINE + CURSOR_UP_ONE + DELETE_LINE + CURSOR_UP_ONE)
 
 
 def updateprogress(current, ratio):
