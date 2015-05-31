@@ -2,44 +2,34 @@
 
 from Bio import PDB
 import argparse
-import threading
+import pandas as pd
+
+from energies import *
 
 
-def filter_ligands(pdb_file):
-    pdb_parser = PDB.PDBParser(QUIET = True)
-    ref = pdb_parser.get_structure(pdb_file, pdb_file)
-    for i in ref.get_chains():
-        ch = i
-    return ch
+def alignstructures(crystal, pdbpath):
+    """
+    Align predicted Sructure to crystal structure and compute
+    the RMSE
+    :param crystal: pdb object
+    :param pdb: pdb object
+    """
 
-def is_connected():
-    return false
+    parser = PDB.PDBParser(QUIET=True)
+    pdb = parser.get_structure("", pdbpath)
+    ligandfilter(pdb)
 
-def align_structs(ref, sample):
-    ref_atoms = []
-    smpl_atoms = []
+    crystal_atoms = []
+    pdb_atoms = []
 
-    for ref_res in ref:
-        ref_atoms.append(ref_res['CA'])
-    for smpl_res in sample:
-        smpl_atoms.append(smpl_res['CA'])
+    for crystal_res in crystal.get_residues():
+        crystal_atoms.append(crystal_res['CA'])
+    for pdb_res in pdb.get_residues():
+        pdb_atoms.append(pdb_res['CA'])
 
     super_imposer = PDB.Superimposer()
-    super_imposer.set_atoms(ref_atoms, smpl_atoms)
-    super_imposer.apply(sample.get_atoms())
-    
-    return(super_imposer.rms)
-
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument('path', help='folder containing the crystal\
-        structure and the predictions', type=str)
-    parser.add_argument('ref', help='name of the file containing the crystal\
-        structure', type=str)
-    args = parser.parse_args()
-    
-    # test
-    ref = filter_ligands(args.ref)
-    print(align_structs(ref, ref))
+    super_imposer.set_atoms(crystal_atoms, pdb_atoms)
+    super_imposer.apply(pdb.get_atoms())
+    print(super_imposer.rms)
+    return super_imposer.rms
 

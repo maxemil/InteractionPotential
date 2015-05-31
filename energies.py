@@ -230,6 +230,35 @@ def computecontactenergy(pdbpath, pool):
     # Convert to kcal/mol
     return sum(energies) / 21
 
+def alignstructures(crystal, pdbpath):
+    """
+    Align predicted Sructure to crystal structure and compute
+    the RMSE
+    :param crystal: pdb object
+    :param pdb: pdb object
+    """
+
+    parser = PDB.PDBParser(QUIET=True)
+    pdb = parser.get_structure("", pdbpath)
+    ligandfilter(pdb)
+
+    crystal_atoms = []
+    pdb_atoms = []
+
+    for crystal_res in crystal.get_residues():
+        crystal_atoms.append(crystal_res['CA'])
+    for pdb_res in pdb.get_residues():
+        pdb_atoms.append(pdb_res['CA'])
+
+
+    print(len(crystal_atoms))
+    print(len(pdb_atoms))
+
+    super_imposer = PDB.Superimposer()
+    super_imposer.set_atoms(crystal_atoms, pdb_atoms)
+    super_imposer.apply(pdb.get_atoms())
+    print(super_imposer.rms)
+    return super_imposer.rms
 
 def waiting(async):
     """
@@ -263,7 +292,7 @@ def updateprogress(current, ratio):
     print("Current PDB: {}".format(current))
 
 
-def main(path, out, cores):
+def main(path, out, cores, crystal):
     """
     Compute contact energies for each pdb in path and write results to 'out'.
     :param path: str
@@ -271,6 +300,11 @@ def main(path, out, cores):
     :param cores: int
     :return:
     """
+
+    parser = PDB.PDBParser(QUIET=True)
+    crystal = parser.get_structure("", os.path.join(path,crystal))
+    ligandfilter(crystal)
+
     # Find all pdbs in path
     workload = []
     for file in os.listdir(path):
@@ -282,8 +316,9 @@ def main(path, out, cores):
     pool = Pool(processes=cores)
     results = []
     for (nr, pdb) in enumerate(workload):
-        updateprogress(pdb, nr / len(workload))
-        e = computecontactenergy(os.path.join(path, pdb), pool)
+        # updateprogress(pdb, nr / len(workload))
+        # e = computecontactenergy(os.path.join(path, pdb), pool)
+        e = alignstructures(crystal, os.path.join(path, pdb))
         results.append((pdb, e))
     pool.close()
     # Make 100% to appear
@@ -302,5 +337,7 @@ if __name__ == "__main__":
                        type=str)
     shell.add_argument("out", help="Output-file for the computed energies")
     shell.add_argument("cores", help="Nr. of cores", type=int, default=4)
+    shell.add_argument("crystal", help="name of the file containing the true\
+                       crystal structure", type=str)
     args = shell.parse_args()
-    main(args.path, args.out, args.cores)
+    main(args.path, args.out, args.cores, args.crystal)
