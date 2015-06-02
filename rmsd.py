@@ -24,11 +24,11 @@ def backbonec(crystal, pdb):
                 yield [cres.child_dict['CA'], pres.child_dict['CA']]
 
 def enumerate_pdb(crystal, workload):
-    for pdb in workload:
-        yield [crystal, pdb]
+    for (nr, pdb) in enumerate(workload):
+        yield [crystal, pdb, nr/len(workload)]
 
 
-def alignstructures(crystal, pdbpath):
+def alignstructures(crystal, pdbpath, stat):
     """
     Align predicted Sructure to crystal structure and compute
     the RMSE
@@ -39,7 +39,7 @@ def alignstructures(crystal, pdbpath):
     parser = PDB.PDBParser(QUIET=True)
     pdb = parser.get_structure("", pdbpath)
     ligandfilter(pdb)
-    updateprogress(pdbpath, 1/10)
+    updateprogress(pdbpath, stat)
 
 
     c_atoms = pd.DataFrame(columns=['crystal','pdb'])
