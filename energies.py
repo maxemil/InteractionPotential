@@ -141,6 +141,16 @@ def ligandfilter(pdb):
                 model.detach_child(chain)
         if len(model) == 0:
             pdb.detach_child(model)
+    # if the pdb still has more than one model, it's probably an NMR structure and 
+    # we simply keep the first model
+    if len(pdb) > 1:
+        for model in pdb.child_list[1:]:
+            pdb.detach_child(model.id)
+    if len(pdb.child_list[0]) > 1:
+        for model in pdb.child_list:
+            for chain in model.child_list[1:]:
+                model.detach_child(chain.id)
+#        pdb.child_list = [pdb.child_list[0]]
     # There is only one model left
     assert len(pdb) == 1
     # This model has only one chain

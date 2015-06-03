@@ -1,0 +1,75 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% Benutzt Vorlage 
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+
+\documentclass[11pt,a4paper]{article}
+%\documentclass[conference]{IEEEtran}
+\usepackage{epsfig}
+\usepackage{amsthm, amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage[fleqn]{amsmath}
+\usepackage{float,tikz}
+\usepackage{amssymb, amsfonts, amsthm, booktabs,wasysym, hyperref}
+\usepackage{verbatim}
+\usepackage{tabularx}
+\usepackage{graphicx}
+
+\newcommand{\TODO}[1]{{\color{red}\fbox{#1}}\PackageWarning{TODO}{**** TODO (page \thepage): #1 ****}}
+\newcommand{\m}[1]{\begin{pmatrix} #1 \end{pmatrix}}
+\newcommand{\lx}[1]{\lim_{n \rightarrow \infty} \left( #1 \right)}
+\newcommand{\ml}[1]{\begin{multline*} #1 \\ \end{multline*}}
+\newcommand{\sN}{\mathbb{N}}
+\newcommand{\sR}{\mathbb{R}}
+\newcommand{\folg}{\quad \ensuremath{\Rightarrow} \quad}
+\newcommand{\ctbl}[2]{\begin{center}\begin{tabular}{#1} #2
+\end{tabular}\end{center}}
+\newcommand{\al}[1]{\begin{aligned} #1 \end{aligned}}
+\newcommand{\fnurl}[1]{\footnote{\verb°#1°}} %URL als Fussnote
+\newcommand{\alg}[1]{\begin{align*} #1 \end{align*}}
+\newcommand{\equmf}{\quad \Leftrightarrow \quad}
+\newcommand{\mpgv}[2]{\begin{minipage}{#1} \texttt{#2} \end{minipage}}
+\newcommand{\includecode}[1]{{\footnotesize \begin{flushright} \texttt{#1}
+  \end{flushright} \vspace{-2mm} \hrule \verbatiminput{#1} \hrule \vspace{5mm}}}
+\newcommand{\todo}[1]{{\huge \\\color{red}  TODO: #1 }}
+\newcommand{\block}[2]{\ensuremath{\underbrace{\left [ #1 \right ]}_{#2}}}
+\renewcommand{\(}{\left (}
+\renewcommand{\)}{\right )}
+
+
+% correct bad hyphenation here
+\hyphenation{ana-ly-sis net-work}
+
+%
+\begin{document}
+\title{
+  {\small Bioinformatics II 2015 \hfill project 3, \today}\\
+   Contact Energies
+}
+
+\author{
+Max Emil Schön, Adrian Geißler, Edgar Olijar
+}
+
+% make the title area
+\maketitle
+
+
+%\begin{abstract}
+%\end{abstract}
+
+
+\section{Inroduction}
+\section{Material and Methods}
+\section{Results}
+\section{Discussion}
+
+%bibliography
+%\bibliographystyle{IEEEtran}
+% argument is your BibTeX string definitions and bibliography database(s)
+%\bibliography{IEEEabrv,ref}
+
+\end{document}
