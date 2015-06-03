@@ -63,7 +63,7 @@ def main(path, out, cores, crystal):
     """
 
     parser = PDB.PDBParser(QUIET=True)
-    crystal = parser.get_structure("", os.path.join(path,crystal))
+    crystal = parser.get_structure("", crystal)
     ligandfilter(crystal)
 
     # Find all pdbs in path

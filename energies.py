@@ -263,7 +263,7 @@ def updateprogress(current, ratio):
     print("Current PDB: {}".format(current))
 
 
-def main(path, out, cores, crystal):
+def main(path, out, cores):
     """
     Compute contact energies for each pdb in path and write results to 'out'.
     :param path: str
@@ -271,11 +271,6 @@ def main(path, out, cores, crystal):
     :param cores: int
     :return:
     """
-
-    parser = PDB.PDBParser(QUIET=True)
-    crystal = parser.get_structure("", os.path.join(path,crystal))
-    ligandfilter(crystal)
-
     # Find all pdbs in path
     workload = []
     for file in os.listdir(path):
@@ -287,9 +282,8 @@ def main(path, out, cores, crystal):
     pool = Pool(processes=cores)
     results = []
     for (nr, pdb) in enumerate(workload):
-        # updateprogress(pdb, nr / len(workload))
-        # e = computecontactenergy(os.path.join(path, pdb), pool)
-        e = alignstructures(crystal, os.path.join(path, pdb))
+        updateprogress(pdb, nr / len(workload))
+        e = computecontactenergy(os.path.join(path, pdb), pool)
         results.append((pdb, e))
     pool.close()
     # Make 100% to appear
@@ -308,7 +302,5 @@ if __name__ == "__main__":
                        type=str)
     shell.add_argument("out", help="Output-file for the computed energies")
     shell.add_argument("cores", help="Nr. of cores", type=int, default=4)
-    shell.add_argument("crystal", help="name of the file containing the true\
-                       crystal structure", type=str)
     args = shell.parse_args()
-    main(args.path, args.out, args.cores, args.crystal)
+    main(args.path, args.out, args.cores)
