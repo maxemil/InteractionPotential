@@ -11,11 +11,11 @@ def histogram(data, title):
     plt.title("Distribution of Energies")
     plt.xlabel("kcal/mol")
     plt.suptitle("Dataset: {}".format(title))
-    plt.savefig("{}.pdf".format(title))
+    plt.savefig("results/{}.pdf".format(title))
 
 
 sets = ["T0762", "T0769", "T0776", "T0784"]
 
 for x in sets:
-    frame = pd.read_csv("{}.csv".format(x))
+    frame = pd.read_csv("results/{}.csv".format(x))
     histogram(frame[frame.columns[1]], x)
