@@ -7,7 +7,6 @@ import pandas as pd
 import argparse
 import os
 import time
-import sys
 from math import floor
 from collections import defaultdict
 from itertools import combinations
@@ -114,8 +113,8 @@ for code, caseslist in specialcodes.items():
 def atomtype(atom):
     """
     Atom type for atom. (Table 1)
-    :param atom:PDB.Atom
-    :return:str
+    :param atom: PDB.Atom
+    :return: str
     """
     try:
         # Constant time lookup of special cases
@@ -128,7 +127,8 @@ def atomtype(atom):
 def ligandfilter(pdb):
     """
     Remove water and other ligands from pdb.
-    :return:None
+    :param pdb: PDB.Structure.Structure
+    :return: None
     """
     # Remove non amino acid residues
     # To upkeep the integrity due to detaching, iterate over child_list copy!
@@ -141,16 +141,15 @@ def ligandfilter(pdb):
                 model.detach_child(chain)
         if len(model) == 0:
             pdb.detach_child(model)
-    # if the pdb still has more than one model, it's probably an NMR structure and 
-    # we simply keep the first model
+    # if the pdb still has more than one model, it's probably an NMR structure
+    # simply keep the first model
     if len(pdb) > 1:
         for model in pdb.child_list[1:]:
             pdb.detach_child(model.id)
     if len(pdb.child_list[0]) > 1:
-        for model in pdb.child_list:
-            for chain in model.child_list[1:]:
-                model.detach_child(chain.id)
-#        pdb.child_list = [pdb.child_list[0]]
+        model = pdb.child_list[0]
+        for chain in model.child_list[1:]:
+            model.detach_child(chain.id)
     # There is only one model left
     assert len(pdb) == 1
     # This model has only one chain
@@ -163,7 +162,7 @@ def iscontactpair(atom1, atom2):
     connection class. It is assumed that the atoms are on the same chain.
     :param atom1: PDB.Atom
     :param atom2: PDB.Atom
-    :return:bool
+    :return: bool
     """
     if atom1 - atom2 > 6:
         # Exclusion due to big distance
@@ -181,9 +180,8 @@ def energylookup(atom1, atom2):
     Lookup energy codes for a pair of atoms.
     :param atom1: PDBAtom
     :param atom12: PDBAtom
-    :return:float
+    :return: float
     """
-    # Attribute atomtype set by itercontactpairs function
     return contactenergies.loc[atomtype(atom1), atomtype(atom2)]
 
 
@@ -191,8 +189,8 @@ def allpairs(pdb):
     """
     Iterator over all heavy atom pairs in a PDB structure.
     PDB consists of only one model and only one chain.
-    :param pdb: PDB.
-    :return:iterator
+    :param pdb: PDB.Structure.Structure
+    :return: iterator
     """
     # Filter out hydrogen and C-Terminal hydroxyl-group
     heavyatoms = []
@@ -226,7 +224,7 @@ def computecontactenergy(pdbpath, pool):
     Compute contact pairs energy for a PDB file.
     :param pdbpath: str
     :param pool: multiporecessing.Pool
-    :return:float (energy in kcal/mol)
+    :return: float (energy in kcal/mol)
     """
     parser = PDB.PDBParser(QUIET=True)
     pdb = parser.get_structure("", pdbpath)
@@ -245,7 +243,7 @@ def waiting(async):
     """
     Show waiting symbol as long as async is still running.
     :param async: Async object
-    :return:
+    :return: None
     """
     print()
     state = 0
@@ -254,7 +252,7 @@ def waiting(async):
         print(CURSOR_UP_ONE + DELETE_LINE + chars[state])
         state = (state + 1) % len(chars)
         time.sleep(0.5)
-    # Back to line or progressbar
+    # Back to line of progressbar
     print(DELETE_LINE + CURSOR_UP_ONE + DELETE_LINE + CURSOR_UP_ONE)
 
 
@@ -264,7 +262,7 @@ def updateprogress(current, ratio):
     file is.
     :param current: str
     :param ratio: flaot
-    :return:
+    :return: None
     """
     # Delete last progressbar
     print(CURSOR_UP_ONE * 2 + DELETE_LINE * 2, end="")
@@ -279,7 +277,7 @@ def main(path, out, cores):
     :param path: str
     :param out: str
     :param cores: int
-    :return:
+    :return: None
     """
     # Find all pdbs in path
     workload = []

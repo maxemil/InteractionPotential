@@ -7,45 +7,52 @@ from energies import ligandfilter,updateprogress,waiting
 
 import argparse
 import os
-import time
-import sys
 from multiprocessing import Pool
+
 
 def backbonec(crystal, pdb):
     """
     Iterator over all CA atoms in a PDB structure.
     PDB consists of only one model and only one chain.
-    :param pdb: PDB.
-    :return:iterator
+    :param crystal: PDB.Structure.Structure
+    :param pdb: PDB.Structure.Structure
+    :return: iterator
     """
-    for pres in pdb.get_residues():
-        for cres in crystal.get_residues():
-            if cres.id ==pres.id:
-                yield [cres.child_dict['CA'], pres.child_dict['CA']]
+    # Both pdbs have only one chain
+    crystalchain = next(crystal.get_chains())
 
-def enumerate_pdb(crystal, workload):
-    for (nr, pdb) in enumerate(workload):
-        yield [crystal.copy(), pdb, nr/len(workload)]
+    for pdbres in pdb.get_residues():
+        try:
+            crystalres = crystalchain.child_dict[pdbres.id]
+            yield [crystalres.child_dict['CA'], pdbres.child_dict['CA']]
+        except KeyError:
+            # Residue seems to be missing in crystal
+            continue
+
+
+def prepare_workload(crystal, workload):
+    for (nr, pdbpath) in enumerate(workload):
+        yield [crystal.copy(), pdbpath, nr / len(workload)]
 
 
 def alignstructures(crystal, pdbpath, stat):
     """
     Align predicted Sructure to crystal structure and compute
     the RMSE
-    :param crystal: pdb object
-    :param pdb: pdb object
+    :param crystal: PDB.Structure.Structure
+    :param pdbpath: str
+    :param stat: float
+    :return: float
     """
+    updateprogress(pdbpath, stat)
 
     parser = PDB.PDBParser(QUIET=True)
     pdb = parser.get_structure("", pdbpath)
     ligandfilter(pdb)
-    updateprogress(pdbpath, stat)
-
-
-    c_atoms = pd.DataFrame(columns=['crystal','pdb'])
-    for (nr, (pc, cc)) in enumerate(backbonec(crystal, pdb)):
-        c_atoms.loc[nr] = [pc, cc]
-        
+    # Match CAs
+    c_atoms = pd.DataFrame(list(backbonec(crystal, pdb)),
+                           columns=['crystal', 'pdb'])
+    # Structure Align
     super_imposer = PDB.Superimposer()
     super_imposer.set_atoms(c_atoms['crystal'], c_atoms['pdb'])
     super_imposer.apply(pdb.get_atoms())
@@ -61,7 +68,6 @@ def main(path, out, cores, crystal):
     :param cores: int
     :return:
     """
-
     parser = PDB.PDBParser(QUIET=True)
     crystal = parser.get_structure("", crystal)
     ligandfilter(crystal)
@@ -76,24 +82,20 @@ def main(path, out, cores, crystal):
     # Compute energies
     pool = Pool(processes=cores)
 
-    """
-    rmsd = []
-    for x in enumerate_pdb(crystal, workload):
-        rmsd.append(alignstructures(*x))
-    """
-    async = pool.starmap_async(alignstructures, enumerate_pdb(crystal, workload))
+    async = pool.starmap_async(alignstructures,
+                               prepare_workload(crystal, workload))
     waiting(async)
     rmsd = async.get()
-    #"""
 
     pool.close()
-    # Make 100% to appear
+    # Make 100% appear
     updateprogress("Finished", 1)
     # Store output
     with open(out, "w") as handler:
         handler.write("PDB\tRMSD\n")
-        for i in range(len(rmsd)):
-           handler.write(str(workload[i]) + '\t' +  str(rmsd[i]) + '\n')
+        for pdb, value in zip(workload, rmsd):
+           handler.write("{}\t{}\n".format(pdb, value))
+           #handler.write(str(workload[i]) + '\t' +  str(rmsd[i]) + '\n')
 
 
 if __name__ == "__main__":
