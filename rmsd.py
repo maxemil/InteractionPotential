@@ -25,7 +25,7 @@ def backbonec(crystal, pdb):
 
 def enumerate_pdb(crystal, workload):
     for (nr, pdb) in enumerate(workload):
-        yield [crystal, pdb, nr/len(workload)]
+        yield [crystal.copy(), pdb, nr/len(workload)]
 
 
 def alignstructures(crystal, pdbpath, stat):
@@ -76,9 +76,15 @@ def main(path, out, cores, crystal):
     # Compute energies
     pool = Pool(processes=cores)
 
+    """
+    rmsd = []
+    for x in enumerate_pdb(crystal, workload):
+        rmsd.append(alignstructures(*x))
+    """
     async = pool.starmap_async(alignstructures, enumerate_pdb(crystal, workload))
     waiting(async)
     rmsd = async.get()
+    #"""
 
     pool.close()
     # Make 100% to appear
