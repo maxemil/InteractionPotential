@@ -37,7 +37,15 @@ def rmsds_cmp(subset, energies, rmsds):
     print("Top 5 according to Interaction Potential")
     print(matrix.sort("Energy in kcal/mol").iloc[0:5])
 
-
+def ranks(rmsds, title):
+    rs = rmsds["RMSD"].sort(inplace=False)
+    plt.clf()
+    plt.plot(rs)
+    plt.title("Overview of RMSD ranks")
+    plt.xlabel('Rank')
+    plt.ylabel('RMSD [Å]')
+    plt.suptitle("Dataset: {}".format(title))
+    plt.savefig("results/rank_{}.pdf".format(title))
 
 sets = ["T0762", "T0769", "T0776", "T0784"]
 
@@ -45,6 +53,7 @@ for subset in sets:
     energies = pd.read_csv("results/{}.csv".format(subset))
     rmsds = pd.read_csv("results/rmsds_{}".format(subset), sep="\t")
 
+    ranks(rmsds, subset)
     histogram(energies["Energy in kcal/mol"], subset, "Energies")
     histogram(rmsds["RMSD"], subset, "RMSDs", unit="Å")
 
