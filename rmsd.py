@@ -57,9 +57,20 @@ def alignstructures(crystal, pdbpath, stat):
     super_imposer.set_atoms(c_atoms['crystal'], c_atoms['pdb'])
     super_imposer.apply(pdb.get_atoms())
 
+    # Add superimposed crystal structure to pdb
+    #from copy import deepcopy
+    ref = next(crystal.get_chains()).copy()
+    ref.id = "C"
+    # Remove disordered flags
+    for atom in ref.get_atoms():
+        atom.disordered_flag = 0
+    for res in ref.get_residues():
+        res.disordered = 0
+    pdb[0].add(ref)
+    # Save superimposed positions
     io = PDB.PDBIO()
     io.set_structure(pdb)
-    io.save('%s.aligned' % pdbpath.split('.')[0])
+    io.save("{}_aligned.pdb".format(pdbpath.split('.')[0]))
 
     return super_imposer.rms
 
