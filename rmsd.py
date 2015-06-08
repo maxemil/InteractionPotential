@@ -57,7 +57,12 @@ def alignstructures(crystal, pdbpath, stat):
     super_imposer.set_atoms(c_atoms['crystal'], c_atoms['pdb'])
     super_imposer.apply(pdb.get_atoms())
 
+    io = PDB.PDBIO()
+    io.set_structure(pdb)
+    io.save('%s.aligned' % pdbpath.split('.')[0])
+
     return super_imposer.rms
+
 
 
 def main(path, out, cores, crystal):
@@ -101,9 +106,9 @@ def main(path, out, cores, crystal):
 if __name__ == "__main__":
     shell = argparse.ArgumentParser()
     shell.add_argument("path",
-                       help="Path to directory that contains the PDB files",
-                       type=str)
-    shell.add_argument("out", help="Output-file for the computed energies")
+                       help="Path to directory that contains the PDB files\
+                       to be compared", type=str)
+    shell.add_argument("out", help="Output-file for the computed RMSDs")
     shell.add_argument("cores", help="Nr. of cores", type=int, default=4)
     shell.add_argument("crystal", help="name of the file containing the true\
                        crystal structure", type=str)
