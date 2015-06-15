@@ -71,16 +71,20 @@ Max Emil Schön, Adrian Geißler
 The free energy functions needed to model Protein structures are made up of multiple components including van-der-Waals energies, electrostatics, dipole interactions, torsions and others. Here, we focus on atomic contact energies (ACE) of Proteins.\\
 \cite{Zhang1997} describe a method to compute contact energies based on atoms rather than residue interactions, as proposed by \citet{Miyazawa1996}. 
 \section{Material and Methods}
+The parsing/filtering of input \texttt{.pdb} files as well as the computation of RMSD was done using Biopython's module PDB \citep{pdb}.
 \subsection{Energy computation}\label{energies}
 We implemented the Computation of atomic contact energies as proposed by \citet{Zhang1997}. Only heavy atoms were considered as potential pair members. We scanned every pair of atoms in a peptide chain for possible contact pairs. A contact pair is defined by \citet{Zhang1997} as two atoms that have a distance $\leq 6$\,\AA\ and are located at least ten bonds of the backbone away from each other. The bond distance criterion is implemented in terms of residues and the atoms' connectivity classes (Appendix in \citet{Zhang1997}). \\
 For every valid contact pair an energy is given by Table 1 in \citet{Zhang1997}, which is based on the idea of grouping atoms into atom types with similar contact energy behaviour. As \citet{Zhang1997}, we used 18 atom types. To compute the overall energy of a given structure, we summed over all such contact pairs.
 \subsection{Data}
 The Critical Assessment of protein Structure Prediction (CASP) experiments\fnurl{http://www.predictioncenter.org/casp11}{\today} provides a variety of protein structure predictions from different researchers worldwide. We used 4 Protein targets (T0762, T0769, T0776, T0784) and the respective predictions from the current CASP11 experiment to test our energy computation from \ref{energies}.
 \subsection{RMSD}
-For the evaluation of the predicted structures we aligned the backbone C$\alpha$ atoms of the prediction with those of the target experimental structure \citep{pdb}. 
+For the evaluation of the predicted structures we aligned the backbone C$\alpha$ atoms of the prediction with those of the target experimental structure. 
 
 
 \section{Results}
+For the target structure T0762, predictions 008 and 251 yielded the lowest ACE (-262.8469047619) and RMSD (2.0353168441281952), respectively (Fig. \ref{T0762}).
+% sollte man die energien überhaupt reinschreiben? ich finde das sieht nicht so schön aus... zumindest runden könnte man ja.
+
 \begin{figure}[!h]
 	\begin{subfigure}{.5\textwidth}
 		\includegraphics[width=\textwidth]{figures/T0762TS008}
@@ -91,6 +95,7 @@ For the evaluation of the predicted structures we aligned the backbone C$\alpha$
 		\subcaption{}
 	\end{subfigure}
 	 \caption{Best scoring predictions of T0762 evaluated using (a) atomic contact energies (008) and (b) the RMSD between prediction and experimental structure (251). Both predictions were visualized in BALLView \citep{ballview}. green: target experimental stucture. red: predicted structure.}
+	\label{T0762}
 \end{figure}
 
 \begin{figure}[!h]
@@ -137,7 +142,9 @@ For the evaluation of the predicted structures we aligned the backbone C$\alpha$
 	\begin{subfigure}{.5\textwidth}
 		\includegraphics[width=\textwidth]{../results/rank_T0769}
 		\subcaption{}
-	\end{subfigure}
+	\end{subfigure}	
+	
+	\vspace*{3mm}
 	\begin{subfigure}{.5\textwidth}
 		\includegraphics[width=\textwidth]{../results/rank_T0776}
 		\subcaption{}
@@ -146,10 +153,12 @@ For the evaluation of the predicted structures we aligned the backbone C$\alpha$
 		\includegraphics[width=\textwidth]{../results/rank_T0784}
 		\subcaption{}
 	\end{subfigure}
-	\caption{RMSD VS. Rank in original CASP11 exeperiment. (a) T0762 (b) T0769 (c) T0776 (d) T0784}
+	\caption{Calculated RMSD values are plotted against the rank of the corresponding prediction in the original CASP11 exeperiment. (a) T0762 (b) T0769 (c) T0776 (d) T0784}
+	\label{ranks}
 \end{figure}
 
 \section{Discussion}
+As shown by Fig. \ref{ranks}, RMSD values change little for the predictions which scored highest in the original CASP11 experiment. Together with the fact that the prediction with lowest energy in no case possesed the lowest RMSD as well, this suggests that the RMSD measure is a rather poor assessment for prediction quality on its own. Further it seems that the best scoring predictions are not far away from each other in most cases.\\
 
 %\include{appendix}
 
