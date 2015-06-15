@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/TeX Live for SUSE Linux) (format=pdflatex 2015.4.18)  3 JUN 2015 11:51
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/TeX Live for SUSE Linux) (format=pdflatex 2015.4.18)  15 JUN 2015 17:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -782,37 +782,90 @@ Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 \TX@delta=\dimen182
 \TX@cols=\count134
 \TX@ftn=\toks43
+)
+(/usr/share/texmf/tex/latex/tools/longtable.sty
+Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
+\LTleft=\skip52
+\LTright=\skip53
+\LTpre=\skip54
+\LTpost=\skip55
+\LTchunksize=\count135
+\LTcapwidth=\dimen183
+\LT@head=\box39
+\LT@firsthead=\box40
+\LT@foot=\box41
+\LT@lastfoot=\box42
+\LT@cols=\count136
+\LT@rows=\count137
+\c@LT@tables=\count138
+\c@LT@chunks=\count139
+\LT@p@ftn=\toks44
+)
+(/usr/share/texmf/tex/latex/caption/subcaption.sty
+Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
+
+(/usr/share/texmf/tex/latex/caption/caption.sty
+Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
+
+(/usr/share/texmf/tex/latex/caption/caption3.sty
+Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 57.
+\captionmargin=\dimen184
+\captionmargin@=\dimen185
+\captionwidth=\dimen186
+\caption@tempdima=\dimen187
+\caption@indent=\dimen188
+\caption@parindent=\dimen189
+\caption@hangindent=\dimen190
+)
+\c@ContinuedFloat=\count140
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: longtable package is loaded.
+
+(/usr/share/texmf/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2013/02/03 v1.3-62 longtable captions (AR)
+))
+\c@subfigure=\count141
+\c@subtable=\count142
+)
+(/usr/share/texmf/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip56
+\bibsep=\skip57
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count143
 ) (./paper.aux)
 \openout1 = `paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
 
 (/usr/share/texmf/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count135
-\scratchdimen=\dimen183
-\scratchbox=\box39
-\nofMPsegments=\count136
-\nofMParguments=\count137
-\everyMPshowfont=\toks44
-\MPscratchCnt=\count138
-\MPscratchDim=\dimen184
-\MPnumerator=\count139
-\makeMPintoPDFobject=\count140
-\everyMPtoPDFconversion=\toks45
+\scratchcounter=\count144
+\scratchdimen=\dimen191
+\scratchbox=\box43
+\nofMPsegments=\count145
+\nofMParguments=\count146
+\everyMPshowfont=\toks45
+\MPscratchCnt=\count147
+\MPscratchDim=\dimen192
+\MPnumerator=\count148
+\makeMPintoPDFobject=\count149
+\everyMPtoPDFconversion=\toks46
 ) (/usr/share/texmf/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -829,8 +882,8 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 ABD: EveryShipout initializing macros
-\AtBeginShipoutBox=\box40
-Package hyperref Info: Link coloring OFF on input line 47.
+\AtBeginShipoutBox=\box44
+Package hyperref Info: Link coloring OFF on input line 52.
 
 (/usr/share/texmf/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -838,58 +891,202 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/share/texmf/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count141
+\c@section@level=\count150
 )
-LaTeX Info: Redefining \ref on input line 47.
-LaTeX Info: Redefining \pageref on input line 47.
-LaTeX Info: Redefining \nameref on input line 47.
+LaTeX Info: Redefining \ref on input line 52.
+LaTeX Info: Redefining \pageref on input line 52.
+LaTeX Info: Redefining \nameref on input line 52.
  (./paper.out)
 (./paper.out)
 \@outlinefile=\write4
 \openout4 = `paper.out'.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 59.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    Try loading font information for U+msa on input line 64.
  (/usr/share/texmf/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 59.
+LaTeX Font Info:    Try loading font information for U+msb on input line 64.
 
 (/usr/share/texmf/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+wasy on input line 59.
+LaTeX Font Info:    Try loading font information for U+wasy on input line 64.
 
 (/usr/share/texmf/tex/latex/wasysym/uwasy.fd
 File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
-)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 75.
- [1
+) [1
 
 {/usr/share/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 75.
+<figures/T0762TS008.png, id=67, 584.1825pt x 502.12593pt>
+File: figures/T0762TS008.png Graphic file (type png)
+
+<use figures/T0762TS008.png>
+Package pdftex.def Info: figures/T0762TS008.png used on input line 86.
+(pdftex.def)             Requested size: 180.0pt x 154.71503pt.
+
+<figures/T0762TS251.png, id=69, 584.1825pt x 502.12593pt>
+File: figures/T0762TS251.png Graphic file (type png)
+
+<use figures/T0762TS251.png>
+Package pdftex.def Info: figures/T0762TS251.png used on input line 90.
+(pdftex.def)             Requested size: 180.0pt x 154.71503pt.
+
+Overfull \hbox (2.43333pt too wide) in paragraph at lines 85--93
+[]$[]$ $[]$ 
+ []
+
+<figures/T0769TS442.png, id=74, 576.65437pt x 502.12593pt>
+File: figures/T0769TS442.png Graphic file (type png)
+
+<use figures/T0769TS442.png>
+Package pdftex.def Info: figures/T0769TS442.png used on input line 98.
+(pdftex.def)             Requested size: 180.0pt x 156.73775pt.
+
+<figures/T0769TS241.png, id=75, 576.65437pt x 502.12593pt>
+File: figures/T0769TS241.png Graphic file (type png)
+
+<use figures/T0769TS241.png>
+Package pdftex.def Info: figures/T0769TS241.png used on input line 102.
+(pdftex.def)             Requested size: 180.0pt x 156.73775pt.
+
+Overfull \hbox (2.43333pt too wide) in paragraph at lines 97--105
+[]$[]$ $[]$ 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<figures/T0776TS300.png, id=80, 576.65437pt x 502.12593pt>
+File: figures/T0776TS300.png Graphic file (type png)
+
+<use figures/T0776TS300.png>
+Package pdftex.def Info: figures/T0776TS300.png used on input line 110.
+(pdftex.def)             Requested size: 180.0pt x 156.73775pt.
+
+<figures/T0776TS420.png, id=81, 576.65437pt x 502.12593pt>
+File: figures/T0776TS420.png Graphic file (type png)
+
+<use figures/T0776TS420.png>
+Package pdftex.def Info: figures/T0776TS420.png used on input line 114.
+(pdftex.def)             Requested size: 180.0pt x 156.73775pt.
+
+Overfull \hbox (2.43333pt too wide) in paragraph at lines 109--117
+[]$[]$ $[]$ 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<figures/T0784TS117.png, id=86, 576.65437pt x 502.12593pt>
+File: figures/T0784TS117.png Graphic file (type png)
+
+<use figures/T0784TS117.png>
+Package pdftex.def Info: figures/T0784TS117.png used on input line 122.
+(pdftex.def)             Requested size: 180.0pt x 156.73775pt.
+
+<figures/T0784TS156.png, id=87, 576.65437pt x 502.12593pt>
+File: figures/T0784TS156.png Graphic file (type png)
+
+<use figures/T0784TS156.png>
+Package pdftex.def Info: figures/T0784TS156.png used on input line 126.
+(pdftex.def)             Requested size: 180.0pt x 156.73775pt.
+
+Overfull \hbox (2.43333pt too wide) in paragraph at lines 121--129
+[]$[]$ $[]$ 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<../results/rank_T0762.pdf, id=92, 578.16pt x 433.62pt>
+File: ../results/rank_T0762.pdf Graphic file (type pdf)
+
+<use ../results/rank_T0762.pdf>
+Package pdftex.def Info: ../results/rank_T0762.pdf used on input line 134.
+(pdftex.def)             Requested size: 180.0pt x 134.99644pt.
+
+<../results/rank_T0769.pdf, id=93, 578.16pt x 433.62pt>
+File: ../results/rank_T0769.pdf Graphic file (type pdf)
+
+<use ../results/rank_T0769.pdf>
+Package pdftex.def Info: ../results/rank_T0769.pdf used on input line 138.
+(pdftex.def)             Requested size: 180.0pt x 134.99644pt.
+
+<../results/rank_T0776.pdf, id=94, 578.16pt x 433.62pt>
+File: ../results/rank_T0776.pdf Graphic file (type pdf)
+
+<use ../results/rank_T0776.pdf>
+Package pdftex.def Info: ../results/rank_T0776.pdf used on input line 142.
+(pdftex.def)             Requested size: 180.0pt x 134.99644pt.
+
+<../results/rank_T0784.pdf, id=95, 578.16pt x 433.62pt>
+File: ../results/rank_T0784.pdf Graphic file (type pdf)
+
+<use ../results/rank_T0784.pdf>
+Package pdftex.def Info: ../results/rank_T0784.pdf used on input line 146.
+(pdftex.def)             Requested size: 180.0pt x 134.99644pt.
+
+Overfull \hbox (2.43333pt too wide) in paragraph at lines 133--149
+[]$[]$ $[]$
+ []
+
+
+Overfull \hbox (2.43333pt too wide) in paragraph at lines 133--149
+[]$ $[]$ 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+(./paper.bbl [2 <./figures/T0762TS008.png> <./figures/T0762TS251.png>] [3 <./fi
+gures/T0769TS442.png> <./figures/T0769TS241.png> <./figures/T0776TS300.png> <./
+figures/T0776TS420.png>])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 161.
+ [4 <./figures/T0784TS117.png> <./figures/T0784TS156.png>] [5 <../results/rank_
+T0762.pdf> <../results/rank_T0769.pdf
+
+pdfTeX warning: pdflatex (file ../results/rank_T0769.pdf): PDF inclusion: multi
+ple pdfs with page group included in a single page
+> <../results/rank_T0776.pdf
+
+pdfTeX warning: pdflatex (file ../results/rank_T0776.pdf): PDF inclusion: multi
+ple pdfs with page group included in a single page
+> <../results/rank_T0784.pdf
+
+pdfTeX warning: pdflatex (file ../results/rank_T0784.pdf): PDF inclusion: multi
+ple pdfs with page group included in a single page
+>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 161.
  (./paper.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 75.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 75.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 161.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 161.
 Package rerunfilecheck Info: File `paper.out' has not changed.
-(rerunfilecheck)             Checksum: E032014CE786D9E75780D3419D91FFF7;188.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 75.
+(rerunfilecheck)             Checksum: 28A65F3198BD08C66500B0C9BCA02C6C;362.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 161.
  ) 
 Here is how much of TeX's memory you used:
- 14857 strings out of 493315
- 255009 string characters out of 6145893
- 325311 words of memory out of 5000000
- 18007 multiletter control sequences out of 15000+600000
- 10130 words of font info for 39 fonts, out of 8000000 for 9000
+ 16475 strings out of 493315
+ 281754 string characters out of 6145893
+ 361630 words of memory out of 5000000
+ 19561 multiletter control sequences out of 15000+600000
+ 15029 words of font info for 59 fonts, out of 8000000 for 9000
  959 hyphenation exceptions out of 8191
- 56i,7n,55p,461b,323s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 56i,8n,55p,565b,453s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf
-/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf/fonts/type1/public/
-amsfonts/cm/cmr12.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr17.pf
-b>
-Output written on paper.pdf (1 page, 48448 bytes).
+/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf/fonts/type1/public
+/amsfonts/cm/cmr10.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr12.p
+fb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf
+/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf/fonts/type1/public/a
+msfonts/cm/cmr8.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr9.pfb><
+/usr/share/texmf/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf/fo
+nts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf/fonts/type1/public/am
+sfonts/cm/cmtt9.pfb>
+Output written on paper.pdf (5 pages, 999802 bytes).
 PDF statistics:
- 49 PDF objects out of 1000 (max. 8388607)
- 41 compressed objects within 1 object stream
- 6 named destinations out of 1000 (max. 500000)
- 45 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 328 PDF objects out of 1000 (max. 8388607)
+ 151 compressed objects within 2 object streams
+ 24 named destinations out of 1000 (max. 500000)
+ 129 words of extra memory for PDF output out of 10000 (max. 10000000)
 

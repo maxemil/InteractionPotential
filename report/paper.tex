@@ -13,11 +13,17 @@
 \usepackage{color}
 \usepackage[fleqn]{amsmath}
 \usepackage{float,tikz}
-\usepackage{amssymb, amsfonts, amsthm, booktabs,wasysym, hyperref}
+\usepackage{amssymb, amsfonts, amsthm, booktabs,wasysym}
+\usepackage[hidelinks]{hyperref}
 \usepackage{verbatim}
 \usepackage{tabularx}
 \usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{subcaption}
+\usepackage[round]{natbib}
 
+
+\newcommand{\fnurl}[2]{\footnote{\url{#1} (last accessed: #2)}} %URL als Fussnote
 \newcommand{\TODO}[1]{{\color{red}\fbox{#1}}\PackageWarning{TODO}{**** TODO (page \thepage): #1 ****}}
 \newcommand{\m}[1]{\begin{pmatrix} #1 \end{pmatrix}}
 \newcommand{\lx}[1]{\lim_{n \rightarrow \infty} \left( #1 \right)}
@@ -28,7 +34,6 @@
 \newcommand{\ctbl}[2]{\begin{center}\begin{tabular}{#1} #2
 \end{tabular}\end{center}}
 \newcommand{\al}[1]{\begin{aligned} #1 \end{aligned}}
-\newcommand{\fnurl}[1]{\footnote{\verb°#1°}} %URL als Fussnote
 \newcommand{\alg}[1]{\begin{align*} #1 \end{align*}}
 \newcommand{\equmf}{\quad \Leftrightarrow \quad}
 \newcommand{\mpgv}[2]{\begin{minipage}{#1} \texttt{#2} \end{minipage}}
@@ -47,11 +52,11 @@
 \begin{document}
 \title{
   {\small Bioinformatics II 2015 \hfill project 3, \today}\\
-   Contact Energies
+   Atomic Contact Energies
 }
 
 \author{
-Max Emil Schön, Adrian Geißler, Edgar Olijar
+Max Emil Schön, Adrian Geißler
 }
 
 % make the title area
@@ -62,14 +67,95 @@ Max Emil Schön, Adrian Geißler, Edgar Olijar
 %\end{abstract}
 
 
-\section{Inroduction}
+\section{Introduction}
+The free energy functions needed to model Protein structures are made up of multiple components including van-der-Waals energies, electrostatics, dipole interactions, torsions and others. Here, we focus on atomic contact energies (ACE) of Proteins.\\
+\cite{Zhang1997} describe a method to compute contact energies based on atoms rather than residue interactions, as proposed by \citet{Miyazawa1996}. 
 \section{Material and Methods}
+\subsection{Energy computation}\label{energies}
+We implemented the Computation of atomic contact energies as proposed by \citet{Zhang1997}. Only heavy atoms were considered as potential pair members. We scanned every pair of atoms in a peptide chain for possible contact pairs. A contact pair is defined by \citet{Zhang1997} as two atoms that have a distance $\leq 6$\,\AA\ and are located at least ten bonds of the backbone away from each other. The bond distance criterion is implemented in terms of residues and the atoms' connectivity classes (Appendix in \citet{Zhang1997}). \\
+For every valid contact pair an energy is given by Table 1 in \citet{Zhang1997}, which is based on the idea of grouping atoms into atom types with similar contact energy behaviour. As \citet{Zhang1997}, we used 18 atom types. To compute the overall energy of a given structure, we summed over all such contact pairs.
+\subsection{Data}
+The Critical Assessment of protein Structure Prediction (CASP) experiments\fnurl{http://www.predictioncenter.org/casp11}{\today} provides a variety of protein structure predictions from different researchers worldwide. We used 4 Protein targets (T0762, T0769, T0776, T0784) and the respective predictions from the current CASP11 experiment to test our energy computation from \ref{energies}.
+\subsection{RMSD}
+For the evaluation of the predicted structures we aligned the backbone C$\alpha$ atoms of the prediction with those of the target experimental structure \citep{pdb}. 
+
+
 \section{Results}
+\begin{figure}[!h]
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=\textwidth]{figures/T0762TS008}
+		\subcaption{}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=\textwidth]{figures/T0762TS251}
+		\subcaption{}
+	\end{subfigure}
+	 \caption{Best scoring predictions of T0762 evaluated using (a) atomic contact energies (008) and (b) the RMSD between prediction and experimental structure (251). Both predictions were visualized in BALLView \citep{ballview}. green: target experimental stucture. red: predicted structure.}
+\end{figure}
+
+\begin{figure}[!h]
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=\textwidth]{figures/T0769TS442}
+		\subcaption{}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=\textwidth]{figures/T0769TS241}
+		\subcaption{}
+	\end{subfigure}
+	 \caption{Best scoring predictions of T0769 evaluated using (a) atomic contact energies (442) and (b) the RMSD between prediction and experimental structure (241). Both predictions were visualized in BallView \citep{ballview}. green: target experimental stucture. red: predicted structure.}
+\end{figure}
+
+\begin{figure}[!h]
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=\textwidth]{figures/T0776TS300}
+		\subcaption{}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=\textwidth]{figures/T0776TS420}
+		\subcaption{}
+	\end{subfigure}
+	 \caption{Best scoring predictions of T0776 evaluated using (a) atomic contact energies (300) and (b) the RMSD between prediction and experimental structure (420). Both predictions were visualized in BallView \citep{ballview}. green: target experimental stucture. red: predicted structure.}
+\end{figure}
+
+\begin{figure}[!h]
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=\textwidth]{figures/T0784TS117}
+		\subcaption{}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=\textwidth]{figures/T0784TS156}
+		\subcaption{}
+	\end{subfigure}
+	\caption{Best scoring predictions of T0776 evaluated using (a) atomic contact energies (117) and (b) the RMSD between prediction and experimental structure (156). Both predictions were visualized in BallView \citep{ballview}. green: target experimental stucture. red: predicted structure.}
+\end{figure}
+
+\begin{figure}[!h]
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=\textwidth]{../results/rank_T0762}
+		\subcaption{}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=\textwidth]{../results/rank_T0769}
+		\subcaption{}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=\textwidth]{../results/rank_T0776}
+		\subcaption{}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=\textwidth]{../results/rank_T0784}
+		\subcaption{}
+	\end{subfigure}
+	\caption{RMSD VS. Rank in original CASP11 exeperiment. (a) T0762 (b) T0769 (c) T0776 (d) T0784}
+\end{figure}
+
 \section{Discussion}
 
+%\include{appendix}
+
 %bibliography
-%\bibliographystyle{IEEEtran}
+\bibliographystyle{abbrvnat}
 % argument is your BibTeX string definitions and bibliography database(s)
-%\bibliography{IEEEabrv,ref}
+\bibliography{ref}
 
 \end{document}
