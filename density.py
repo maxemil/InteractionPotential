@@ -13,8 +13,8 @@ import pandas as pd
 
 
 CORES = 4
-#PATH = "/Users/adrian/Documents/Master Studies/2 Semester/Bioinformatics 2/Exercises/Assignment 2/supplement02"
-PATH = "/Users/adrian/Desktop/project_3_pdbs/"
+#PATH = ".../Assignment 2/supplement02"
+PATH = ".../project_3_pdbs/"
 # to be evaluated radii
 THRESHOLD = 13
 RADS = sp.linspace(2, THRESHOLD, 25)
