@@ -86,6 +86,8 @@ def slowpacking(pdb):
     # Normalize to density
     volumina = pd.Series(4 / 3.0 * sp.pi * (RADS ** 3), index=RADS)
     density = meancounts / volumina
+    # Correct for center
+    density -= 1 / (4/3 * sp.pi * RADS ** 3)
     # Results
     counts.index = ["{}_correctcount".format(i) for i in counts.index]
     density.index = ["{}_density".format(i) for i in density.index]
