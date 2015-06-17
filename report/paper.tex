@@ -50,7 +50,10 @@ Here, we implement this algorithm and assess its quality on various protein pred
 \section{Material and Methods}
 We implemented the algorithm in the Python language. In addition, we used Biopython's pdb processing functionality \citep{pdb}.
 
-The pairwise contact energies were adopted from \citet{Zhang1997}. We used the auhor's cutoff distance of 6\,\AA, because we were able to verify this value based on the atomic packaging of a large set of non-homologous experimental protein structures.
+The pairwise contact energies were adopted from \citet{Zhang1997}. We used the
+author's cutoff distance of 6\,\AA, because we were able to verify this value
+based on the atomic packaging of a large set of non-homologous experimental
+protein structures (see \autoref{distance})
 
 The quality of the implemented function was assessed on a subset of the submissions to the eleventh CASP competition (Critical Assessment of protein Structure Prediction) \fnurl{http://www.predictioncenter.org/casp11}{\today}. The datasets in question were T0762, T0769, T0776, T0784. We evaluated each prediction by superimposing its backbone C$\alpha$ atoms onto the reference and computing the RMSD, which we compared to the RMSD values listed on the CASP website \fnurl{TODO}{\today}.
 Afterwards, we investigated correlations between the RMSD and the computed energies. The python package SciPy \citep{scipy} was used for the computation of the Pearson and the Spearman correlation coefficients.
@@ -58,52 +61,149 @@ Afterwards, we investigated correlations between the RMSD and the computed energ
 \section{Results}
 For every target structure we visualized the prediction with the lowest RMSD and the one with the lowest free contact energy in BALLView \citep{ballview}. Example visualizations of datasets T0679 and T0784 are shown in Fig. \ref{fig:visualize}
 
-\begin{figure}
-	\begin{subfigure}{.5\textwidth}
-		\includegraphics[width=\textwidth]{figures/T0769TS442}
-		\subcaption{T0769 442}
-	\end{subfigure}
-	\begin{subfigure}{.5\textwidth}
-		\includegraphics[width=\textwidth]{figures/T0769TS241}
-		\subcaption{T0769 241}
-	\end{subfigure}
-
-	\begin{subfigure}{.5\textwidth}
-		\includegraphics[width=\textwidth]{figures/T0784TS117}
-		\subcaption{T0784 117}
-	\end{subfigure}
-	\begin{subfigure}{.5\textwidth}
-		\includegraphics[width=\textwidth]{figures/T0784TS156}
-		\subcaption{T0784 156}
-	\end{subfigure}
-	\caption{Best scoring predictions of T0769 and T0784 evaluated using (a,c) atomic contact energies and (b,d) the RMSD between prediction and experimental structure. green: target experimental stucture. red: predicted structure.}
-	\label{fig:visualize}
-\end{figure}
 
 The relationship between ranked contact energy prediction and the RMSD are shown in Fig. \ref{ranks}.
 
-\begin{figure}[!h]
-	\centering
-	\includegraphics[width=.7\textwidth]{../results/rank_T0784}
-	\caption{Calculated RMSD values are plotted against the rank of the corresponding prediction in the original CASP11 experiment. (a) T0762 (b) T0769 (c) T0776 (d) T0784}
-	\label{ranks}
-\end{figure}
 
 Pearson's correlation coefficients between our free contact energies and the energies calculated by the CASP experiment ranged from 0.19 to 0.44. When comparing our energies to the corresponding ranks from CASP, the Spearman's correlation coefficients ranged from 0.15 to 0.33 (Table \ref{tbl:comparison}). We also manually compared our RSMD calculations with those from CASP and found that they largely correspond well to one another.
-%\include{Table}
+
+\begin{table}[tbp]
+    \caption{\label{tbl:comparison}For the dataset \texttt{T0784} and
+        \texttt{T0769}, the tables
+        show the computed contact energies and the RMSD counterparts sorted by
+        energies (left) and by RMSD (right).}
+    \scriptsize
+    \centerline{
+        \begin{tabular}{|c|c|c|}
+            \hline
+            \texttt{T0784} & Energy in $\frac{kcal}{mol}$ & RMSD\\
+            \hline
+            T0784TS156\_1 & $-130.48$ & $1.15$\\
+            T0784TS420\_1 & $-127.74$ & $1.17$\\
+            T0784TS499\_1 & $-149.46$ & $1.18$\\
+            T0784TS237\_1 & $-139.99$ & $1.22$\\
+            T0784TS268\_1 & $-160.82$ & $1.28$\\
+            \hline
+        \end{tabular}
+        \begin{tabular}{|c|c|c|}
+            \hline
+            \texttt{T0784} & Energy in $\frac{kcal}{mol}$ & RMSD\\
+            \hline
+            T0784TS117\_1 & $-230.12$ & $1.73$\\
+            T0784TS008\_1 & $-203.16$ & $1.86$\\
+            T0784TS251\_1 & $-193.6 $ & $1.63$\\
+            T0784TS038\_1 & $-162.31$ & $1.38$\\
+            T0784TS268\_1 & $-160.82$ & $1.28$\\
+            \hline
+        \end{tabular}
+    }
+
+    \vspace{2em}
+    \centerline{
+        \begin{tabular}{|c|c|c|}
+            \hline
+            \texttt{T0769} & Energy in $\frac{kcal}{mol}$ & RMSD\\
+            \hline
+            T0769TS241\_1 & $-59.34$ & $2.67$\\
+            T0769TS368\_1 & $-66.75$ & $3.16$\\
+            T0769TS258\_1 & $-74.39$ & $4.37$\\
+            T0769TS361\_1 & $-79.04$ & $4.41$\\
+            T0769TS186\_1 & $-79.97$ & $4.51$\\
+            \hline
+        \end{tabular}
+        \begin{tabular}{|c|c|c|}
+            \hline
+            \texttt{T0769} & Energy in $\frac{kcal}{mol}$ & RMSD\\
+            \hline
+            T0769TS442\_1 & $-90.73$ & $16.72$\\
+            T0769TS155\_1 & $-90.62$ & $17.12$\\
+            T0769TS044\_1 & $-84.32$ & $10.38$\\
+            T0769TS169\_1 & $-81.02$ & $10.39$\\
+            T0769TS317\_1 & $-80.61$ & $ 6.89$\\
+            \hline
+        \end{tabular}
+    }
+\end{table}
 
 %Our results verify the cutoff-distance of 6\,\AA\ chosen by \citet{Zhang1997}, computed from atomic packing densities (Fig. \ref{distance}).
-\begin{figure}[!h]
-	\centering
-	\includegraphics[width=1\textwidth]{figures/better.pdf}
-	\caption{}
-	\label{distance}
+\begin{figure}[tbp]
+    \begin{center}
+        \begin{subfigure}{.4\textwidth}
+            \includegraphics[width=\textwidth]{figures/T0769TS442}
+            \subcaption{T0769 442}
+        \end{subfigure}
+        \begin{subfigure}{.4\textwidth}
+            \includegraphics[width=\textwidth]{figures/T0769TS241}
+            \subcaption{T0769 241}
+        \end{subfigure}
+
+        \begin{subfigure}{.4\textwidth}
+            \includegraphics[width=\textwidth]{figures/T0784TS117}
+            \subcaption{T0784 117}
+        \end{subfigure}
+        \begin{subfigure}{.4\textwidth}
+            \includegraphics[width=\textwidth]{figures/T0784TS156}
+            \subcaption{T0784 156}
+        \end{subfigure}
+    \end{center}
+    \caption{Best scoring predictions of T0769 and T0784 evaluated using (a,c) atomic contact energies and (b,d) the RMSD between prediction and experimental structure. green: target experimental stucture. red: predicted structure.}
+    \label{fig:visualize}
+\end{figure}
+\begin{figure}[tbp]%[!h]
+    \centering
+    \includegraphics[width=.7\textwidth]{../results/rank_T0784}
+    \caption{Calculated RMSD values are plotted against the rank of the
+        corresponding prediction in the original CASP11 experiment
+        \texttt{T0784}.}
+    \label{ranks}
+\end{figure}
+\begin{figure}[tbp]%[!h]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/better.pdf}
+    \caption{Shown is the atomic packaging estimated by the number density
+    according to a radius around an interior atom. An atom is considered to be
+    buried if the accessible surface area (SAS) is zero.}
+    \label{distance}
 \end{figure}
 
 
 
 \section{Discussion}
-As shown by Fig. \ref{ranks}, RMSD values change little for the predictions which scored highest in the original CASP11 experiment. Together with the fact that the prediction with lowest energy in no case possesed the lowest RMSD as well, this suggests that the RMSD measure is a rather poor assessment for prediction quality on its own. Further it seems that the best scoring predictions are not far away from each other in most cases.\\
+
+% - Threshold
+After implementing the algorithm of \citet{Zhang1997}, we were able to reproduce
+the threshold value of $6$\,\AA\ on a non-homologous structure set.
+%This value is in so far justified, since it considers the
+A relative increase of density
+for radii around this value
+%around this radius range
+was observable (see \autoref{distance}) which could be
+due to the relevance for atomic contacts.
+% - RMSD different
+The correlation metrics Pearson and Spearman did not indicate a linear
+correlation between RMSD and the computed energies.
+However, visual inspections 
+of the RMSD distribution suggest that these metrics are bound to fail, because
+significant changes were only observed for the lower ranking third of the
+predicted structures.
+% - suitability of correlation
+The original CASP11 evaluations take this property of RMSD into account, as they utilize a multitude of other quality measures.
+% - Trends
+
+Although the correlation coefficients are low, plots of the superimposed
+structures show trends of consensus with the reference structure.
+% - Idea 18 years old
+% - not random, but not good
+Therefore, we suggest that the energy function of \citet{Zhang1997} is suitable
+to quickly assess the quality of folds, even though the resulting values will not
+be able to compete with more current free energy functions.
+
+%As shown by Fig. \ref{ranks}, RMSD values change little for the predictions
+%which scored highest in the original CASP11 experiment. Together with the fact
+%that the prediction with lowest energy in no case possesed the lowest RMSD as
+%well, this suggests that the RMSD measure is a rather poor assessment for
+%prediction quality on its own. Further it seems that the best scoring
+%predictions are not far away from each other in most cases.\\
 
 %\include{appendix}
 
