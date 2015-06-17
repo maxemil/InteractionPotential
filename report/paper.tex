@@ -24,12 +24,12 @@
 %
 \begin{document}
 \title{
-  {\small Bioinformatics II 2015 \hfill project 3, \today}\\
+  {\small Bioinformatics II, 2015 \hfill project 3, \today}\\
    Atomic Contact Energies
 }
 
 \author{
-Max Emil Schön, Adrian Geißler
+    Max Emil Sch{\"o}n, Adrian Gei{\ss}ler
 }
 
 % make the title area
@@ -41,7 +41,14 @@ Max Emil Schön, Adrian Geißler
 
 
 \section{Introduction}
-Energy functions are used to model protein 3D structures. Aspects that influence the free energy of proteins are van-der-Waals forces, electrostatics, dipole interactions, and torsions. \citet{Zhang1997} described a method to approximate the solvation energy based on atom contacts, rather than residue interactions, as proposed by \citet{Miyazawa1996}.
+Energy functions are used to model protein 3D structures. Aspects that influence
+the free energy of proteins are van-der-Waals forces, electrostatics, dipole
+interactions, and torsions.
+The free desolation energy describes the required energy for the trans-location
+of in water solved atoms to the interior of a protein \citep{Zhang1997}, which
+therefore is measure for the stability of a structure.
+\citet{Zhang1997} described a method to approximate
+the desolvation energy based on atom contacts, rather than residue interactions, as proposed by \citet{Miyazawa1996}.
 
 Their approach is to assign one of 18 atom types to each heavy atom. Based on these types, the energetic contribution of each contact pair to the overall energy is derived. A contact pair is defined by \citet{Zhang1997} as two atoms that have a distance below 6\,\AA\ and that are at least ten covalent bonds away from each other. The covalent distance is approximated with respect to connectivity classes without considering bonds in side-chains.
 
@@ -55,17 +62,40 @@ author's cutoff distance of 6\,\AA, because we were able to verify this value
 based on the atomic packaging of a large set of non-homologous experimental
 protein structures (see \autoref{distance})
 
-The quality of the implemented function was assessed on a subset of the submissions to the eleventh CASP competition (Critical Assessment of protein Structure Prediction) \fnurl{http://www.predictioncenter.org/casp11}{\today}. The datasets in question were T0762, T0769, T0776, T0784. We evaluated each prediction by superimposing its backbone C$\alpha$ atoms onto the reference and computing the RMSD, which we compared to the RMSD values listed on the CASP website \fnurl{TODO}{\today}.
-Afterwards, we investigated correlations between the RMSD and the computed energies. The python package SciPy \citep{scipy} was used for the computation of the Pearson and the Spearman correlation coefficients.
+The performance of the implemented function was assessed on a subset of the
+submissions to the eleventh CASP competition (Critical Assessment of protein
+Structure Prediction) \fnurl{http://www.predictioncenter.org/casp11}{\today}.
+The datasets in question were T0762, T0769, T0776, T0784. We evaluated each
+prediction by superimposing its backbone C$\alpha$ atoms onto the reference and
+computing the RMSD values, which we compared to the RMSD numbers listed on the CASP
+website~\fnurl{http://www.predictioncenter.org/casp11/local\_acc\_plot.cgi?target=T0762-D1}{\today}.
+Afterwards, we investigated correlations between the RMSD and the computed
+energies whereby the implementations of
+the Pearson and the Spearman correlation coefficients from
+the python package SciPy \citep{scipy} were used.
 
 \section{Results}
-For every target structure we visualized the prediction with the lowest RMSD and the one with the lowest free contact energy in BALLView \citep{ballview}. Example visualizations of datasets T0679 and T0784 are shown in Fig. \ref{fig:visualize}
+For every target structure, we visualized the prediction with the lowest RMSD and
+the one with the lowest free contact energy in BALLView \citep{ballview}.
+Representative visualizations for the datasets T0679 and T0784 are shown in Fig. \ref{fig:visualize}
 
 
 The relationship between ranked contact energy prediction and the RMSD are shown in Fig. \ref{ranks}.
 
 
-Pearson's correlation coefficients between our free contact energies and the energies calculated by the CASP experiment ranged from 0.19 to 0.44. When comparing our energies to the corresponding ranks from CASP, the Spearman's correlation coefficients ranged from 0.15 to 0.33 (Table \ref{tbl:comparison}). We also manually compared our RSMD calculations with those from CASP and found that they largely correspond well to one another.
+Pearson's correlation coefficients between the free contact energies and the
+RMSD
+%AG: NOPE
+%calculated by the CASP experiment
+ranged from 0.19 to 0.44.
+In contrast to these values,
+%When comparing our energies to the corresponding ranks from CASP, the
+Spearman's rank correlation coefficients were lower, in a range from 0.15 to 0.33 (Table \ref{tbl:comparison}).
+A comparison of the $C\alpha$ superimposed RMSD values with the reference values
+from
+%We also manually compared our RSMD calculations with those from
+CASP an high degree of similarity.
+%and found that they largely correspond well to one another.
 
 \begin{table}[tbp]
     \caption{\label{tbl:comparison}For the dataset \texttt{T0784} and
@@ -153,7 +183,9 @@ Pearson's correlation coefficients between our free contact energies and the ene
     \centering
     \includegraphics[width=.7\textwidth]{../results/rank_T0784}
     \caption{Calculated RMSD values are plotted against the rank of the
-        corresponding prediction in the original CASP11 experiment
+        corresponding prediction
+        %in the original CASP11 experiment
+        for the target set
         \texttt{T0784}.}
     \label{ranks}
 \end{figure}
@@ -191,12 +223,15 @@ The original CASP11 evaluations take this property of RMSD into account, as they
 % - Trends
 
 Although the correlation coefficients are low, plots of the superimposed
-structures show trends of consensus with the reference structure.
+structures show trends of consensus with the reference structures.
 % - Idea 18 years old
 % - not random, but not good
+
+Since the overall energy is derived from the sum of contact energies,
+the implemented algorithm just took a few minutes on the whole dataset.
 Therefore, we suggest that the energy function of \citet{Zhang1997} is suitable
 to quickly assess the quality of folds, even though the resulting values will not
-be able to compete with more current free energy functions.
+be able to compete with more current free desolation energy functions.
 
 %As shown by Fig. \ref{ranks}, RMSD values change little for the predictions
 %which scored highest in the original CASP11 experiment. Together with the fact
