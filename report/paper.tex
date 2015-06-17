@@ -1,12 +1,4 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 
-% Benutzt Vorlage 
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-
 \documentclass[11pt,a4paper]{article}
-%\documentclass[conference]{IEEEtran}
 \usepackage{epsfig}
 \usepackage{amsthm, amssymb}
 \usepackage[utf8]{inputenc}
@@ -25,25 +17,6 @@
 
 \newcommand{\fnurl}[2]{\footnote{\url{#1} (last accessed: #2)}} %URL als Fussnote
 \newcommand{\TODO}[1]{{\color{red}\fbox{#1}}\PackageWarning{TODO}{**** TODO (page \thepage): #1 ****}}
-\newcommand{\m}[1]{\begin{pmatrix} #1 \end{pmatrix}}
-\newcommand{\lx}[1]{\lim_{n \rightarrow \infty} \left( #1 \right)}
-\newcommand{\ml}[1]{\begin{multline*} #1 \\ \end{multline*}}
-\newcommand{\sN}{\mathbb{N}}
-\newcommand{\sR}{\mathbb{R}}
-\newcommand{\folg}{\quad \ensuremath{\Rightarrow} \quad}
-\newcommand{\ctbl}[2]{\begin{center}\begin{tabular}{#1} #2
-\end{tabular}\end{center}}
-\newcommand{\al}[1]{\begin{aligned} #1 \end{aligned}}
-\newcommand{\alg}[1]{\begin{align*} #1 \end{align*}}
-\newcommand{\equmf}{\quad \Leftrightarrow \quad}
-\newcommand{\mpgv}[2]{\begin{minipage}{#1} \texttt{#2} \end{minipage}}
-\newcommand{\includecode}[1]{{\footnotesize \begin{flushright} \texttt{#1}
-  \end{flushright} \vspace{-2mm} \hrule \verbatiminput{#1} \hrule \vspace{5mm}}}
-\newcommand{\todo}[1]{{\huge \\\color{red}  TODO: #1 }}
-\newcommand{\block}[2]{\ensuremath{\underbrace{\left [ #1 \right ]}_{#2}}}
-\renewcommand{\(}{\left (}
-\renewcommand{\)}{\right )}
-
 
 % correct bad hyphenation here
 \hyphenation{ana-ly-sis net-work}
@@ -68,94 +41,66 @@ Max Emil Schön, Adrian Geißler
 
 
 \section{Introduction}
-The free energy functions needed to model Protein structures are made up of multiple components including van-der-Waals energies, electrostatics, dipole interactions, torsions and others. Here, we focus on atomic contact energies (ACE) of Proteins.\\
-\cite{Zhang1997} describe a method to compute contact energies based on atoms rather than residue interactions, as proposed by \citet{Miyazawa1996}. 
-\section{Material and Methods}
-The parsing/filtering of input \texttt{.pdb} files as well as the computation of RMSD was done using Biopython's module PDB \citep{pdb}.
-\subsection{Energy computation}\label{energies}
-We implemented the Computation of atomic contact energies as proposed by \citet{Zhang1997}. Only heavy atoms were considered as potential pair members. We scanned every pair of atoms in a peptide chain for possible contact pairs. A contact pair is defined by \citet{Zhang1997} as two atoms that have a distance $\leq 6$\,\AA\ and are located at least ten bonds of the backbone away from each other. The bond distance criterion is implemented in terms of residues and the atoms' connectivity classes (Appendix in \citet{Zhang1997}). \\
-For every valid contact pair an energy is given by Table 1 in \citet{Zhang1997}, which is based on the idea of grouping atoms into atom types with similar contact energy behaviour. As \citet{Zhang1997}, we used 18 atom types. To compute the overall energy of a given structure, we summed over all such contact pairs.
-\subsection{Data}
-The Critical Assessment of protein Structure Prediction (CASP) experiments\fnurl{http://www.predictioncenter.org/casp11}{\today} provides a variety of protein structure predictions from different researchers worldwide. We used 4 Protein targets (T0762, T0769, T0776, T0784) and the respective predictions from the current CASP11 experiment to test our energy computation from \ref{energies}.
-\subsection{RMSD}
-For the evaluation of the predicted structures we aligned the backbone C$\alpha$ atoms of the prediction with those of the target experimental structure. 
+Energy functions are used to model protein 3D structures. Aspects that influence the free energy of proteins are van-der-Waals forces, electrostatics, dipole interactions, and torsions. \citet{Zhang1997} described a method to approximate the solvation energy based on atom contacts, rather than residue interactions, as proposed by \citet{Miyazawa1996}.
 
+Their approach is to assign one of 18 atom types to each heavy atom. Based on these types, the energetic contribution of each contact pair to the overall energy is derived. A contact pair is defined by \citet{Zhang1997} as two atoms that have a distance below 6\,\AA\ and that are at least ten covalent bonds away from each other. The covalent distance is approximated with respect to connectivity classes without considering bonds in side-chains.
+
+Here, we implement this algorithm and assess its quality on various protein prediction data sets.
+
+\section{Material and Methods}
+We implemented the algorithm in the Python language. In addition, we used Biopython's pdb processing functionality \citep{pdb}.
+
+The pairwise contact energies were adopted from \citet{Zhang1997}. We used the auhor's cutoff distance of 6\,\AA, because we were able to verify this value based on the atomic packaging of a large set of non-homologous experimental protein structures.
+
+The quality of the implemented function was assessed on a subset of the submissions to the eleventh CASP competition (Critical Assessment of protein Structure Prediction) \fnurl{http://www.predictioncenter.org/casp11}{\today}. The datasets in question were T0762, T0769, T0776, T0784. We evaluated each prediction by superimposing its backbone C$\alpha$ atoms onto the reference and computing the RMSD, which we compared to the RMSD values listed on the CASP website \fnurl{TODO}{\today}.
+Afterwards, we investigated correlations between the RMSD and the computed energies. The python package SciPy \citep{scipy} was used for the computation of the Pearson and the Spearman correlation coefficients.
 
 \section{Results}
-For the target structure T0762, predictions 008 and 251 yielded the lowest ACE (-262.8469047619) and RMSD (2.0353168441281952), respectively (Fig. \ref{T0762}).
-% sollte man die energien überhaupt reinschreiben? ich finde das sieht nicht so schön aus... zumindest runden könnte man ja.
+For every target structure we visualized the prediction with the lowest RMSD and the one with the lowest free contact energy in BALLView \citep{ballview}. Example visualizations of datasets T0679 and T0784 are shown in Fig. \ref{fig:visualize}
 
-\begin{figure}[!h]
-	\begin{subfigure}{.5\textwidth}
-		\includegraphics[width=\textwidth]{figures/T0762TS008}
-		\subcaption{}
-	\end{subfigure}
-	\begin{subfigure}{.5\textwidth}
-		\includegraphics[width=\textwidth]{figures/T0762TS251}
-		\subcaption{}
-	\end{subfigure}
-	 \caption{Best scoring predictions of T0762 evaluated using (a) atomic contact energies (008) and (b) the RMSD between prediction and experimental structure (251). Both predictions were visualized in BALLView \citep{ballview}. green: target experimental stucture. red: predicted structure.}
-	\label{T0762}
-\end{figure}
-
-\begin{figure}[!h]
+\begin{figure}
 	\begin{subfigure}{.5\textwidth}
 		\includegraphics[width=\textwidth]{figures/T0769TS442}
-		\subcaption{}
+		\subcaption{T0769 442}
 	\end{subfigure}
 	\begin{subfigure}{.5\textwidth}
 		\includegraphics[width=\textwidth]{figures/T0769TS241}
-		\subcaption{}
+		\subcaption{T0769 241}
 	\end{subfigure}
-	 \caption{Best scoring predictions of T0769 evaluated using (a) atomic contact energies (442) and (b) the RMSD between prediction and experimental structure (241). Both predictions were visualized in BallView \citep{ballview}. green: target experimental stucture. red: predicted structure.}
-\end{figure}
 
-\begin{figure}[!h]
-	\begin{subfigure}{.5\textwidth}
-		\includegraphics[width=\textwidth]{figures/T0776TS300}
-		\subcaption{}
-	\end{subfigure}
-	\begin{subfigure}{.5\textwidth}
-		\includegraphics[width=\textwidth]{figures/T0776TS420}
-		\subcaption{}
-	\end{subfigure}
-	 \caption{Best scoring predictions of T0776 evaluated using (a) atomic contact energies (300) and (b) the RMSD between prediction and experimental structure (420). Both predictions were visualized in BallView \citep{ballview}. green: target experimental stucture. red: predicted structure.}
-\end{figure}
-
-\begin{figure}[!h]
 	\begin{subfigure}{.5\textwidth}
 		\includegraphics[width=\textwidth]{figures/T0784TS117}
-		\subcaption{}
+		\subcaption{T0784 117}
 	\end{subfigure}
 	\begin{subfigure}{.5\textwidth}
 		\includegraphics[width=\textwidth]{figures/T0784TS156}
-		\subcaption{}
+		\subcaption{T0784 156}
 	\end{subfigure}
-	\caption{Best scoring predictions of T0776 evaluated using (a) atomic contact energies (117) and (b) the RMSD between prediction and experimental structure (156). Both predictions were visualized in BallView \citep{ballview}. green: target experimental stucture. red: predicted structure.}
+	\caption{Best scoring predictions of T0769 and T0784 evaluated using (a,c) atomic contact energies and (b,d) the RMSD between prediction and experimental structure. green: target experimental stucture. red: predicted structure.}
+	\label{fig:visualize}
 \end{figure}
 
+The relationship between ranked contact energy prediction and the RMSD are shown in Fig. \ref{ranks}.
+
 \begin{figure}[!h]
-	\begin{subfigure}{.5\textwidth}
-		\includegraphics[width=\textwidth]{../results/rank_T0762}
-		\subcaption{}
-	\end{subfigure}
-	\begin{subfigure}{.5\textwidth}
-		\includegraphics[width=\textwidth]{../results/rank_T0769}
-		\subcaption{}
-	\end{subfigure}	
-	
-	\vspace*{3mm}
-	\begin{subfigure}{.5\textwidth}
-		\includegraphics[width=\textwidth]{../results/rank_T0776}
-		\subcaption{}
-	\end{subfigure}
-	\begin{subfigure}{.5\textwidth}
-		\includegraphics[width=\textwidth]{../results/rank_T0784}
-		\subcaption{}
-	\end{subfigure}
-	\caption{Calculated RMSD values are plotted against the rank of the corresponding prediction in the original CASP11 exeperiment. (a) T0762 (b) T0769 (c) T0776 (d) T0784}
+	\centering
+	\includegraphics[width=.7\textwidth]{../results/rank_T0784}
+	\caption{Calculated RMSD values are plotted against the rank of the corresponding prediction in the original CASP11 experiment. (a) T0762 (b) T0769 (c) T0776 (d) T0784}
 	\label{ranks}
 \end{figure}
+
+Pearson's correlation coefficients between our free contact energies and the energies calculated by the CASP experiment ranged from 0.19 to 0.44. When comparing our energies to the corresponding ranks from CASP, the Spearman's correlation coefficients ranged from 0.15 to 0.33 (Table \ref{tbl:comparison}). We also manually compared our RSMD calculations with those from CASP and found that they largely correspond well to one another.
+%\include{Table}
+
+%Our results verify the cutoff-distance of 6\,\AA\ chosen by \citet{Zhang1997}, computed from atomic packing densities (Fig. \ref{distance}).
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=1\textwidth]{figures/better.pdf}
+	\caption{}
+	\label{distance}
+\end{figure}
+
+
 
 \section{Discussion}
 As shown by Fig. \ref{ranks}, RMSD values change little for the predictions which scored highest in the original CASP11 experiment. Together with the fact that the prediction with lowest energy in no case possesed the lowest RMSD as well, this suggests that the RMSD measure is a rather poor assessment for prediction quality on its own. Further it seems that the best scoring predictions are not far away from each other in most cases.\\

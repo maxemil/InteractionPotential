@@ -1,4 +1,4 @@
-\begin{thebibliography}{4}
+\begin{thebibliography}{5}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -21,6 +21,12 @@ S.~Miyazawa and R.~L. Jernigan.
 A.~Moll, A.~Hildebrandt, H.-P. Lenhof, and O.~Kohlbacher.
 \newblock {BALLView: a tool for research and education in molecular modeling.}
 \newblock \emph{Bioinformatics}, 22\penalty0 (3):\penalty0 365--366, 2006.
+
+\bibitem[Oliphant(2007)]{scipy}
+T.~E. Oliphant.
+\newblock {SciPy: Open source scientific tools for Python}.
+\newblock \emph{Computing in Science and Engineering}, 9:\penalty0 10--20,
+  2007.
 
 \bibitem[Zhang et~al.(1997)Zhang, Vasmatzis, Cornette, and DeLisi]{Zhang1997}
 C.~Zhang, G.~Vasmatzis, J.~L. Cornette, and C.~DeLisi.
