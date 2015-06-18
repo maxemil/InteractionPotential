@@ -3,12 +3,13 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: slides.aux
 A level-1 auxiliary file: 1intro.aux
 A level-1 auxiliary file: 2method.aux
+A level-1 auxiliary file: 3results.aux
 A level-1 auxiliary file: 4discussion.aux
 The style file: jneurosci.bst
 Database file #1: ref.bib
 You've used 2 entries,
             2619 wiz_defined-function locations,
-            593 strings with 5125 characters,
+            594 strings with 5137 characters,
 and the built_in function-call counts, 843 in all, are:
 = -- 77
 > -- 36

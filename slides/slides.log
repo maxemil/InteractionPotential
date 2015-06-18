@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/TeX Live for SUSE Linux) (format=pdflatex 2015.4.18)  18 JUN 2015 23:32
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/TeX Live for SUSE Linux) (format=pdflatex 2015.4.18)  18 JUN 2015 23:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1202,21 +1202,21 @@ athreplacing.code.tex)) (./slides.aux (./1intro.aux) (./2method.aux)
 (./3results.aux) (./4discussion.aux))
 \openout1 = `slides.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Try loading font information for T1+phv on input line 143.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 142.
 
 (/usr/share/texmf/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
@@ -1285,7 +1285,7 @@ e
 ))
 ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box98
-Package hyperref Info: Link coloring OFF on input line 143.
+Package hyperref Info: Link coloring OFF on input line 142.
 
 (/usr/share/texmf/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -1295,56 +1295,56 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count286
 )
-LaTeX Info: Redefining \ref on input line 143.
-LaTeX Info: Redefining \pageref on input line 143.
-LaTeX Info: Redefining \nameref on input line 143.
+LaTeX Info: Redefining \ref on input line 142.
+LaTeX Info: Redefining \pageref on input line 142.
+LaTeX Info: Redefining \nameref on input line 142.
  (./slides.out)
 (./slides.out)
 \@outlinefile=\write5
 \openout5 = `slides.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 143.
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 142.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 143.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 142.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmss/m/n --> T1/ppl/m/n on input line 143.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 143.
+(Font)                  OT1/cmss/m/n --> T1/ppl/m/n on input line 142.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 142.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> T1/phv/bx/n on input line 143.
+(Font)                  OT1/cmr/bx/n --> T1/phv/bx/n on input line 142.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> T1/phv/bx/n on input line 143.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 143.
+(Font)                  OT1/cmr/bx/n --> T1/phv/bx/n on input line 142.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 142.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> T1/phv/m/n on input line 143.
+(Font)                  OT1/cmss/m/n --> T1/phv/m/n on input line 142.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> T1/phv/m/n on input line 143.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 143.
+(Font)                  OT1/cmss/bx/n --> T1/phv/m/n on input line 142.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 142.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> T1/phv/m/it on input line 143.
+(Font)                  OT1/cmr/m/it --> T1/phv/m/it on input line 142.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> T1/phv/m/it on input line 143.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 143.
+(Font)                  OT1/cmr/bx/it --> T1/phv/m/it on input line 142.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 142.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> T1/pcr/m/n on input line 143.
+(Font)                  OT1/cmtt/m/n --> T1/pcr/m/n on input line 142.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> T1/pcr/m/n on input line 143.
+(Font)                  OT1/cmtt/m/n --> T1/pcr/m/n on input line 142.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  T1/phv/m/n --> T1/phv/bx/n on input line 143.
+(Font)                  T1/phv/m/n --> T1/phv/bx/n on input line 142.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  T1/phv/m/it --> T1/phv/bx/it on input line 143.
+(Font)                  T1/phv/m/it --> T1/phv/bx/it on input line 142.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmss/bx/n --> T1/ppl/bx/n on input line 143.
+(Font)                  OT1/cmss/bx/n --> T1/ppl/bx/n on input line 142.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  T1/phv/bx/n --> T1/phv/bx/n on input line 143.
+(Font)                  T1/phv/bx/n --> T1/phv/bx/n on input line 142.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  T1/phv/m/n --> T1/phv/bx/n on input line 143.
+(Font)                  T1/phv/m/n --> T1/phv/bx/n on input line 142.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  T1/phv/m/it --> T1/phv/bx/it on input line 143.
+(Font)                  T1/phv/m/it --> T1/phv/bx/it on input line 142.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  T1/pcr/m/n --> T1/pcr/bx/n on input line 143.
+(Font)                  T1/pcr/m/n --> T1/pcr/bx/n on input line 142.
 
 (/usr/share/texmf/tex/latex/beamer/translator/dicts/translator-basic-dictionary
 /translator-basic-dictionary-English.dict
@@ -1370,7 +1370,7 @@ Dictionary: translator-numbers-dictionary, Language: English
 ry/translator-theorem-dictionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 )
-LaTeX Info: Redefining \includegraphics on input line 143.
+LaTeX Info: Redefining \includegraphics on input line 142.
 
 (/usr/share/texmf/tex/latex/ucs/ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
@@ -1423,7 +1423,7 @@ Package mdframed Info: mdframed inside a box
 ] [3
 
 ]
-<baloon.png, id=48, 391.4625pt x 271.0125pt>
+<baloon.png, id=44, 391.4625pt x 271.0125pt>
 File: baloon.png Graphic file (type png)
  <use baloon.png>
 Package pdftex.def Info: baloon.png used on input line 37.
@@ -1465,14 +1465,14 @@ LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10> not available
 
 ] [9
 
-] <ace.png, id=99, 177.66376pt x 105.39375pt>
+] <ace.png, id=95, 177.66376pt x 105.39375pt>
 File: ace.png Graphic file (type png)
  <use ace.png>
 Package pdftex.def Info: ace.png used on input line 61.
 (pdftex.def)             Requested size: 245.83282pt x 145.83751pt.
  [10
 
- <./ace.png>] <prot_norm.pdf, id=108, 556.9608pt x 187.17929pt>
+ <./ace.png>] <prot_norm.pdf, id=104, 556.9608pt x 187.17929pt>
 File: prot_norm.pdf Graphic file (type pdf)
  <use prot_norm.pdf>
 Package pdftex.def Info: prot_norm.pdf used on input line 81.
@@ -1480,7 +1480,7 @@ Package pdftex.def Info: prot_norm.pdf used on input line 81.
 
 [11
 
- <./prot_norm.pdf>] <prot_high.pdf, id=127, 556.9608pt x 187.17929pt>
+ <./prot_norm.pdf>] <prot_high.pdf, id=123, 556.9608pt x 187.17929pt>
 File: prot_high.pdf Graphic file (type pdf)
 
 <use prot_high.pdf>
@@ -1489,7 +1489,7 @@ Package pdftex.def Info: prot_high.pdf used on input line 81.
  [12
 
  <./prot_high.pdf>]
-<../results/Density/better.pdf, id=146, 1131.02554pt x 393.87149pt>
+<../results/Density/better.pdf, id=142, 1131.02554pt x 393.87149pt>
 File: ../results/Density/better.pdf Graphic file (type pdf)
 
 <use ../results/Density/better.pdf>
@@ -1523,12 +1523,12 @@ Package pdftex.def Info: ../results/Density/better.pdf used on input line 94.
 
 ] [23
 
+] [24
+
 ]
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10.95> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 33.
- [24
-
-] [25
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 41.
+ [25
 
 ])
 \openout2 = `3results.aux'.
@@ -1539,37 +1539,37 @@ LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10.95> not available
 
 
 ]
-<../report/figures/T0769TS442.png, id=288, 576.65437pt x 502.12593pt>
+<../report/figures/T0769TS442.png, id=284, 576.65437pt x 502.12593pt>
 File: ../report/figures/T0769TS442.png Graphic file (type png)
 
 <use ../report/figures/T0769TS442.png>
-Package pdftex.def Info: ../report/figures/T0769TS442.png used on input line 16
+Package pdftex.def Info: ../report/figures/T0769TS442.png used on input line 17
 .
 (pdftex.def)             Requested size: 138.2795pt x 120.40541pt.
 
-<../report/figures/T0769TS241.png, id=289, 576.65437pt x 502.12593pt>
+<../report/figures/T0769TS241.png, id=285, 576.65437pt x 502.12593pt>
 File: ../report/figures/T0769TS241.png Graphic file (type png)
 
 <use ../report/figures/T0769TS241.png>
-Package pdftex.def Info: ../report/figures/T0769TS241.png used on input line 16
+Package pdftex.def Info: ../report/figures/T0769TS241.png used on input line 17
 .
 (pdftex.def)             Requested size: 138.2795pt x 120.40541pt.
  [27
 
  <../report/figures/T0769TS442.png> <../report/figures/T0769TS241.png>]
-<../report/figures/T0784TS117.png, id=298, 576.65437pt x 502.12593pt>
+<../report/figures/T0784TS117.png, id=294, 576.65437pt x 502.12593pt>
 File: ../report/figures/T0784TS117.png Graphic file (type png)
 
 <use ../report/figures/T0784TS117.png>
-Package pdftex.def Info: ../report/figures/T0784TS117.png used on input line 28
+Package pdftex.def Info: ../report/figures/T0784TS117.png used on input line 29
 .
 (pdftex.def)             Requested size: 138.2795pt x 120.40541pt.
 
-<../report/figures/T0784TS156.png, id=299, 576.65437pt x 502.12593pt>
+<../report/figures/T0784TS156.png, id=295, 576.65437pt x 502.12593pt>
 File: ../report/figures/T0784TS156.png Graphic file (type png)
 
 <use ../report/figures/T0784TS156.png>
-Package pdftex.def Info: ../report/figures/T0784TS156.png used on input line 28
+Package pdftex.def Info: ../report/figures/T0784TS156.png used on input line 29
 .
 (pdftex.def)             Requested size: 138.2795pt x 120.40541pt.
  [28
@@ -1577,11 +1577,11 @@ Package pdftex.def Info: ../report/figures/T0784TS156.png used on input line 28
  <../report/figures/T0784TS117.png> <../report/figures/T0784TS156.png>] [29
 
 ]
-<../results/rank_T0784.pdf, id=317, 578.16pt x 433.62pt>
+<../results/rank_T0784.pdf, id=312, 578.16pt x 433.62pt>
 File: ../results/rank_T0784.pdf Graphic file (type pdf)
 
 <use ../results/rank_T0784.pdf>
-Package pdftex.def Info: ../results/rank_T0784.pdf used on input line 97.
+Package pdftex.def Info: ../results/rank_T0784.pdf used on input line 91.
 (pdftex.def)             Requested size: 215.10196pt x 161.3235pt.
  [30
 
@@ -1621,22 +1621,22 @@ LaTeX Font Info:    Font shape `T1/phv/m/it' in size <9> not available
 \tf@snm=\write8
 \openout8 = `slides.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 166.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 166.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 165.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 165.
  (./slides.aux
 (./1intro.aux) (./2method.aux) (./3results.aux) (./4discussion.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 166.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 166.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 165.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 165.
 Package rerunfilecheck Info: File `slides.out' has not changed.
-(rerunfilecheck)             Checksum: BAD8744BC5370A229AE8648141DFB416;186.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 166.
+(rerunfilecheck)             Checksum: 42FFFEED7EB55E9E5B6A19FBEE143405;141.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 165.
  ) 
 Here is how much of TeX's memory you used:
- 28888 strings out of 493315
- 564777 string characters out of 6145893
- 694662 words of memory out of 5000000
- 31549 multiletter control sequences out of 15000+600000
- 51999 words of font info for 72 fonts, out of 8000000 for 9000
+ 28860 strings out of 493315
+ 564194 string characters out of 6145893
+ 693480 words of memory out of 5000000
+ 31523 multiletter control sequences out of 15000+600000
+ 51378 words of font info for 70 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  49i,11n,61p,947b,529s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/base/8r.enc}</usr/share/texmf/fonts/type1/p
@@ -1647,10 +1647,10 @@ public/amsfonts/symbols/msam10.pfb></usr/share/texmf/fonts/type1/public/amsfont
 s/symbols/msam7.pfb></usr/share/texmf/fonts/type1/urw/courier/ucrr8a.pfb></usr/
 share/texmf/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texmf/fonts/type1/u
 rw/helvetic/uhvr8a.pfb></usr/share/texmf/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on slides.pdf (38 pages, 22502252 bytes).
+Output written on slides.pdf (38 pages, 22501769 bytes).
 PDF statistics:
- 483 PDF objects out of 1000 (max. 8388607)
- 326 compressed objects within 4 object streams
- 84 named destinations out of 1000 (max. 500000)
- 125 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 479 PDF objects out of 1000 (max. 8388607)
+ 322 compressed objects within 4 object streams
+ 83 named destinations out of 1000 (max. 500000)
+ 117 words of extra memory for PDF output out of 10000 (max. 10000000)
 
