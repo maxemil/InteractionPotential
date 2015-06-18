@@ -20,10 +20,12 @@
 %\usepackage{times}
 %\usepackage{newcent}
 %\usepackage{charter}
-%\usepackage{avant}
+%\usepackage{avant} 
 %\usepackage{chancery}
 %\usepackage{euler}
 %\usepackage{lmodern}
+\usepackage{subcaption}
+%\usepackage[round]{natbib}
 
 % General Style
 %\usepackage[usenames,dvipsnames]{xcolor} % part of beamer
@@ -130,7 +132,7 @@
 
 \title{Atomic Contact Energies}
 \subtitle{Bioinformatics II}
-\author{Adrian Gei{\ss}ler, Max-Emil Sch{\"o}n}
+\author{Adrian Gei{\ss}ler, Max Emil Sch{\"o}n}
 \date{June 22, 2015}
 
 \newcommand*{\ColorIntro}{Cerulean}
@@ -150,15 +152,15 @@
 
     \include{1intro}
     \include{2method}
-    %\include{3results}
+    \include{3results}
     \include{4discussion}
 
     \colorframe{\ColorIntro}{Thank you for your attention!}
 
-    \begin{frame}{Biblography}
+    \begin{frame}{Bibliography}
          % References, use smaller font size
         \footnotesize
-        \bibliographystyle{named}
+        \bibliographystyle{jneurosci}
         \bibliography{ref}
     \end{frame}
 \end{document}

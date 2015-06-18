@@ -1,0 +1,15 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Hamelryck and Manderick}{2003}]{pdb}
+Hamelryck T, Manderick B (2003)
+\newblock {PDB file parser and structure class implemented in Python}.
+\newblock {\em Bioinformatics}~19:\mbox{2308--2310}.
+
+\bibitem[\protect\citeauthoryear{Zhang  \bgroup et al.\egroup
+  }{1997}]{Zhang1997}
+Zhang C, Vasmatzis G, Cornette JL, DeLisi C (1997)
+\newblock {Determination of atomic desolvation energies from the structures of
+  crystallized proteins.}
+\newblock {\em Journal of molecular biology}~267:\mbox{707--726}.
+
+\end{thebibliography}

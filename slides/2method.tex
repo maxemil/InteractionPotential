@@ -4,9 +4,34 @@
 % python + BioPython
 % biopython is fast
 % lookup of energies stored
+
 \begin{frame}{Implementation}
-    \item Implemented in Python
-    \item PDB package from BioPython
+	\begin{itemize}[<+->]
+	    \item Implemented in Python
+    	\item PDB package from BioPython \cite{pdb}
+    	\item Parallelized with multiprocessing package
+    	\item Datastructures from pandas
+    	\item Matrix for pairwise contacts from \cite{Zhang1997}
+	\end{itemize}
 \end{frame}
+
+\begin{frame}{Implementation cont'd}
+	\begin{enumerate}[<+->]
+		\item Load and pre-process Reference structure
+	    \item Filter PDB file
+	    \item For every possible contact pair, check connectivity criterion
+	    \item sum over all pairwise energies
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}{RMSD}
+	\begin{itemize}[<+->]
+		\item Alignment of prediction and target structure based on superposition of $C\alpha$ atoms (again BioPython)
+		\item RMSD as measure of deviation
+		
+	\end{itemize}
+\end{frame}
+
+
 % evaluated on CASP prediction, beacause quality˜stability
 % based on RMSD of CA superimposition (again BioPython)
