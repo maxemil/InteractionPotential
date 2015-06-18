@@ -1,0 +1,164 @@
+% compress makes nav-bars as small as possible
+% usenamse & dipsnames are xcolor options
+\documentclass[compact, usenames, dvipsnames]{beamer}
+
+% increase number of registers - don't move this!
+\usepackage{etex}
+
+% some smaller fixes for LaTeX2e
+\usepackage{fixltx2e}
+
+% Set language and encoding
+\usepackage[T1]{fontenc}
+\usepackage[utf8x]{inputenc}
+\usepackage[english]{babel}
+
+% Set font
+\usepackage{palatino}
+%\usepackage{bookman}
+%\usepackage{utopia}
+%\usepackage{times}
+%\usepackage{newcent}
+%\usepackage{charter}
+%\usepackage{avant}
+%\usepackage{chancery}
+%\usepackage{euler}
+%\usepackage{lmodern}
+
+% General Style
+%\usepackage[usenames,dvipsnames]{xcolor} % part of beamer
+\usepackage{graphicx}
+\usepackage{hyperref}
+%\usepackage{paralist} !! Is incompatible with beamer class
+\usepackage{mdframed}
+\usepackage{jneurosci}
+% All pictures in other folder
+
+% Mathematics
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+
+% TikZ for more complex drawings
+\usepackage{tikz}
+\usetikzlibrary{arrows, patterns, automata, trees, positioning, calc,%
+    shapes, %
+    % used for curled brace
+    decorations.pathreplacing}
+
+% Set Beamer class specific stuff
+
+% Improve spacing on frame titles
+\setbeamertemplate{frametitle}{%
+    %some top border
+    \vspace{.6em}%
+    \insertframetitle%
+    }
+
+% Set footer with title/section
+\setbeamertemplate{footline}{%
+    %some left border
+    \hspace{3em}%
+    % Insert subsection or section / title if not available
+    \ifx\firstpage\empty
+    \else
+        \ifx\insertsubsection\empty%
+            \ifx\insertsection\empty%
+            \inserttitle%
+            \else%
+            \insertsection%
+            \fi%
+        \else%
+            \insertsubsection%
+        \fi%
+        \hfill%
+        \insertframenumber\,/\,\inserttotalframenumber%
+    \fi
+    %some right + bottom border
+    \hspace{3em}%
+    \vspace{3em}%
+    }
+
+% Create a frame with background color for intermissions / questions.
+% Args:
+%       1: color
+%       2: content
+\newcommand*{\colorframe}[2]{%
+    \begingroup%
+    \setbeamercolor{background canvas}{bg=#1}%
+    \begin{frame}{}
+        \color{black}\centering\Large #2
+    \end{frame}%
+    \endgroup%
+    }
+
+
+% Show next entry transparently
+\setbeamercovered{transparent}
+
+% no navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+% Set Colors
+\usecolortheme{default}
+
+\definecolor{UniRed}{RGB}{165,30,55}
+\definecolor{UniGold}{RGB}{180,160,105}
+\definecolor{UniGrey}{RGB}{50,65,75}
+\definecolor{UzhBlue}{RGB}{0,40,165}
+\definecolor{UzhGrey}{RGB}{163,173,183}
+\definecolor{UzhOrange}{RGB}{220,96,39}
+
+\setbeamercolor{structure}{fg=UzhBlue}
+\setbeamercolor{titlelike}{fg=black}
+\setbeamercolor{title}{fg=UzhBlue}
+\setbeamercolor{subtitle}{fg=Black}
+\setbeamercolor{frametitlelike}{fg=UzhBlue}
+\setbeamercolor{frametitle}{parent=frametitlelike}
+\setbeamercolor{framesubtitle}{parent=frametitle}
+\setbeamercolor{mini frame}{parent=structure}
+\setbeamercolor{sepline}{fg=UzhGrey, bg=UzhGrey}
+\setbeamercolor{partpage}{fg=UzhBlue, bg=UzhGrey}
+\setbeamercolor{normal text}{fg=UniGrey}
+\setbeamercolor{itemize item}{fg=black}
+\setbeamercolor{enumerate item}{fg=black}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\title{Atomic Contact Energies}
+\subtitle{Bioinformatics II}
+\author{Adrian Gei{\ss}ler, Max-Emil Sch{\"o}n}
+\date{June 22, 2015}
+
+\newcommand*{\ColorIntro}{Cerulean}
+\newcommand*{\ColorMethod}{Lavender}%Rhodamine}
+\newcommand*{\ColorResults}{YellowGreen}%LimeGreen}
+\newcommand*{\ColorDiscussion}{Peach}
+
+\begin{document}
+
+    \newcommand*{\firstpage}{}
+    \begin{frame}{}
+        \titlepage%
+        \centering%
+        { Tutor: Linus Backert}
+    \end{frame}
+    \renewcommand*{\firstpage}{non-empty string to start showing slide numbers}
+
+    \include{1intro}
+    \include{2method}
+    %\include{3results}
+    \include{4discussion}
+
+    \colorframe{\ColorIntro}{Thank you for your attention!}
+
+    \begin{frame}{Biblography}
+         % References, use smaller font size
+        \footnotesize
+        \bibliographystyle{named}
+        \bibliography{ref}
+    \end{frame}
+\end{document}
