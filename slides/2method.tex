@@ -5,8 +5,20 @@
 % biopython is fast
 % lookup of energies stored
 \begin{frame}{Implementation}
-    \item Implemented in Python
-    \item PDB package from BioPython
+    \begin{itemize}
+        \item Implemented in Python
+        \item PDB package from BioPython
+        \item Parameters identical to original version
+    \end{itemize}
 \end{frame}
 % evaluated on CASP prediction, beacause quality˜stability
 % based on RMSD of CA superimposition (again BioPython)
+
+\begin{frame}{Evaluation}
+    \begin{itemize}
+        \item Free desolution energy can imply structural stability
+        \item Possible measure for Quality for predicted structures
+        \item Evaluated on targets of CASP11 competition
+        \item Comparison of superimposed $C\alpha$ atoms
+    \end{itemize}
+\end{frame}

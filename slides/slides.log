@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99991 (TeX Live 2014) (preloaded format=xelatex 2015.4.1)  18 JUN 2015 17:56
+This is XeTeX, Version 3.14159265-2.6-0.99991 (TeX Live 2014) (preloaded format=xelatex 2015.4.1)  18 JUN 2015 23:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1223,7 +1223,7 @@ s.code.tex
 )
 (/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/libraries/decorations/pgfli
 brarydecorations.pathreplacing.code.tex)) (./slides.aux (./1intro.aux)
-(./2method.aux) (./4discussion.aux))
+(./2method.aux) (./3results.aux) (./4discussion.aux))
 \openout1 = `slides.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 141.
@@ -1441,39 +1441,18 @@ LaTeX Font Info:    Font shape `T1/phv/m/it' in size <5> not available
 ]
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <8> not available
 (Font)              Font shape `T1/phv/m/sl' tried instead on input line 50.
-LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 50.
-
-
-LaTeX Warning: Citation `Zang1998' on page 5 undefined on input line 50.
-
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10> not available
 (Font)              Font shape `T1/phv/m/sl' tried instead on input line 50.
-[5
+ [5
 
 ]
-
-LaTeX Warning: Citation `Zang1998' on page 6 undefined on input line 50.
-
 [6
 
-]
+] [7
 
-LaTeX Warning: Citation `Zang1998' on page 7 undefined on input line 50.
+] [8
 
-[7
-
-]
-
-LaTeX Warning: Citation `Zang1998' on page 8 undefined on input line 50.
-
-[8
-
-]
-
-LaTeX Warning: Citation `Zang1998' on page 9 undefined on input line 50.
-
-[9
+] [9
 
 ]
 File: ace.png Graphic file (type QTm)
@@ -1500,19 +1479,73 @@ File: ../results/Density/better.pdf Graphic file (type QTm)
 
 
 
+] [15
+
+]
+LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10.95> not available
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 24.
+ [16
+
 ])
-\openout2 = `4discussion.aux'.
+\openout2 = `3results.aux'.
 
- (./4discussion.tex [15
+ (./3results.tex [17
 
-
-
-]) [16
 
 
 ]
-No file slides.bbl.
-[17
+File: ../report/figures/T0769TS442.png Graphic file (type QTm)
+
+<use  "../report/figures/T0769TS442.png" >
+File: ../report/figures/T0769TS241.png Graphic file (type QTm)
+
+<use  "../report/figures/T0769TS241.png" > [18
+
+]
+File: ../report/figures/T0784TS117.png Graphic file (type QTm)
+
+<use  "../report/figures/T0784TS117.png" >
+File: ../report/figures/T0784TS156.png Graphic file (type QTm)
+
+<use  "../report/figures/T0784TS156.png" > [19
+
+] [20
+
+]
+File: ../results/rank_T0784.pdf Graphic file (type QTm)
+
+<use  "../results/rank_T0784.pdf" > [21
+
+])
+\openout2 = `4discussion.aux'.
+
+ (./4discussion.tex [22
+
+
+
+] [23
+
+] [24
+
+]
+[25
+
+] [26
+
+] [27
+
+]) [28
+
+
+] (./slides.bbl
+File: beamericonarticle.pdf Graphic file (type QTm)
+ <use  "beamericonarticle.pdf" >
+File: beamericonarticle.pdf Graphic file (type QTm)
+
+<use  "beamericonarticle.pdf" >
+LaTeX Font Info:    Font shape `T1/phv/m/it' in size <9> not available
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 8.
+) [29
 
 ]
 \tf@nav=\write6
@@ -1526,18 +1559,19 @@ No file slides.bbl.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 164.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 164.
- (./slides.aux (./1intro.aux) (./2method.aux) (./4discussion.aux))
+ (./slides.aux (./1intro.aux)
+(./2method.aux) (./3results.aux) (./4discussion.aux))
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 164.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 164.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 164.
  ) 
 Here is how much of TeX's memory you used:
- 32508 strings out of 493734
- 653962 string characters out of 6146349
- 727679 words of memory out of 5000000
- 35212 multiletter control sequences out of 15000+600000
- 34095 words of font info for 49 fonts, out of 8000000 for 9000
+ 32604 strings out of 493734
+ 656182 string characters out of 6146349
+ 733400 words of memory out of 5000000
+ 35287 multiletter control sequences out of 15000+600000
+ 37952 words of font info for 57 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
  56i,11n,71p,10417b,517s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on slides.pdf (17 pages).
+Output written on slides.pdf (29 pages).
